@@ -34,7 +34,10 @@
   --pill-text: var(--g600);
   --card-shadow: 0 4px 6px rgba(0, 0, 0, .07);
   --card-shadow-hover: 0 20px 25px rgba(0, 0, 0, .1);
-  --grad: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  --grad-from: #eef2ff;
+  --grad-to: #e0e7ff;
+  --grad: linear-gradient(135deg, var(--grad-from), var(--grad-to));
+  --chrome-bg: var(--grad-from);
   --grad-dark-sec: linear-gradient(135deg, #12192b, #0a0f1e);
   --ai-grad: linear-gradient(90deg, #7c3aed, #4f46e5);
   --ai-surface: linear-gradient(135deg, #f5f3ff, #eef2ff);
@@ -68,7 +71,10 @@
     --pill-text: var(--g300);
     --card-shadow: 0 4px 6px rgba(0, 0, 0, .3);
     --card-shadow-hover: 0 20px 25px rgba(0, 0, 0, .45);
-    --grad: linear-gradient(135deg, #12192b, #1d2739);
+    --grad-from: #12192b;
+    --grad-to: #1d2739;
+    --grad: linear-gradient(135deg, var(--grad-from), var(--grad-to));
+    --chrome-bg: var(--grad-to);
     --ai-surface: linear-gradient(135deg, rgba(76, 29, 149, .2), rgba(49, 46, 129, .2));
     --brand-grad: linear-gradient(90deg, #818cf8, #a78bfa);
     --em-text: #34d399;
@@ -82,10 +88,13 @@
 
 /* ---------- základ ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background-color: var(--chrome-bg);
+}
 body {
   font-family: var(--font);
-  background: var(--bg);
+  background-color: var(--chrome-bg);
   color: var(--text);
   line-height: 1.55;
   font-size: 16px;
@@ -139,6 +148,14 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 .ghost:hover { border-color: var(--link); }
 
 /* ---------- pill / chip vzory ---------- */
+.chaphead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+.chaphead .badge { margin-top: 0; }
 .chapnum {
   display: inline-block;
   background: var(--count-bg);
@@ -202,8 +219,7 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 /* ---------- zbloudilé kartičky (paralaxa) ---------- */
 .stray-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
 .stray { position: absolute; }
-.s1 { top: 16%; left: -8px; }
-.s2 { top: 34%; right: -14px; }
+.s2 { top: 34%; right: clamp(16px, 4vw, 32px); }
 .s3 { top: 55%; left: 2%; }
 .s4 { top: 72%; right: 3%; }
 .s5 { top: 90%; left: 12%; }
@@ -244,9 +260,10 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 }
 .hero-fliers { position: absolute; inset: 0; pointer-events: none; }
 .flier { position: absolute; opacity: .9; }
-.f1 { top: 18%; animation: flyAcross 17s linear infinite; }
-.f2 { top: 46%; animation: flyAcross 23s linear infinite; animation-delay: -9s; }
-.f3 { top: 72%; animation: flyAcross 20s linear infinite; animation-delay: -4s; }
+.f1 { top: 10%; animation: flyAcross 19s linear infinite; animation-delay: -6s; }
+.f2 { top: 28%; animation: flyAcross 17s linear infinite; }
+.f3 { top: 52%; animation: flyAcross 23s linear infinite; animation-delay: -9s; }
+.f4 { top: 76%; animation: flyAcross 20s linear infinite; animation-delay: -4s; }
 @keyframes flyAcross {
   from { transform: translate3d(-22vw, 0, 0) rotate(-5deg); }
   to   { transform: translate3d(115vw, 0, 0) rotate(6deg); }
@@ -732,12 +749,16 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 40px;
+  justify-content: center;
   overflow: hidden;
+  padding-bottom: 0;
 }
-.flip-scene { position: relative; perspective: 1200px; width: min(86vw, 660px); }
+.flip-scene {
+  position: relative;
+  perspective: 1200px;
+  width: min(86vw, 660px);
+}
 .satellites { position: absolute; inset: -12% -18%; pointer-events: none; }
 .sat { position: absolute; opacity: .85; }
 .sat1 { top: 0; left: 4%; offset-path: circle(46% at 50% 50%); animation: orbit 38s linear infinite; }
@@ -781,7 +802,16 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 .btn-final.pulse { animation: ctaPulse .48s; }
 @keyframes ctaPulse { 50% { transform: scale(1.06); } }
 
-.colophon { font-size: 12px; color: var(--muted); text-align: center; padding: 0 20px 26px; position: relative; z-index: 2; }
+.colophon {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  background: transparent;
+  padding: 28px 20px 32px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
 .colophon a { color: var(--link); }
 
 /* ---------- konfety ---------- */

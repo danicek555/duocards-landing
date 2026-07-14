@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DuoCards — nauč se slovo za 3 vteřiny</title>
-<meta name="description" content="Kartičky, které znají rytmus tvého mozku. AI je vyrobí, spaced repetition je vrátí přesně ve chvíli, kdy začínáš zapomínat. Přihlas se na duocards.xyz.">
+<meta name="description" content="Kartičky, které znají rytmus tvého mozku. AI je vyrobí, spaced repetition je vrátí přesně ve chvíli, kdy začínáš zapomínat. Přihlas se na app.duocards.xyz.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef2ff">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12192b">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1d2739">
+<meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='12' y='6' width='42' height='52' rx='9' fill='%237c3aed'/%3E%3Crect x='8' y='4' width='42' height='52' rx='9' fill='%234f46e5'/%3E%3Ctext x='29' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' text-anchor='middle' fill='%23ffffff'%3ED%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body id="top">
 <div class="page">
 
   <!-- zbloudilé kartičky s paralaxou -->
   <div class="stray-layer" aria-hidden="true">
-    <div class="stray s1"><span class="stray-in cardlet"><b>serendipity</b><i>[EN] šťastná náhoda</i></span></div>
     <div class="stray s2"><span class="stray-in cardlet"><b>Fernweh</b><i>[DE] touha cestovat</i></span></div>
     <div class="stray s3"><span class="stray-in cardlet"><b>sobremesa</b><i>[ES] povídání po jídle</i></span></div>
     <div class="stray s4"><span class="stray-in cardlet"><b>木漏れ日</b><i>[JA] světlo skrz listí</i></span></div>
@@ -27,19 +27,18 @@
 
   <nav class="nav">
     <a class="brand" href="#top" aria-label="DuoCards — začátek stránky">
-      <span class="brand-card" aria-hidden="true">Duo<br>Cards</span>
       <span class="brand-name">DuoCards</span>
     </a>
-    <a class="btn btn-nav" href="https://duocards.xyz/" rel="noopener">Přihlásit se</a>
+    <a class="btn btn-nav" href="https://app.duocards.xyz/" rel="noopener">Přihlásit se</a>
   </nav>
 
   <!-- 01 HERO -->
   <header class="hero bg-paper">
-    <p class="hero-tags"><span>13+ jazyků</span><span>iOS · Android · Web</span></p>
     <div class="hero-fliers" aria-hidden="true">
-      <span class="flier f1 cardlet"><b>bonjour</b><i>ahoj</i></span>
-      <span class="flier f2 cardlet"><b>danke</b><i>díky</i></span>
-      <span class="flier f3 cardlet"><b>ciao</b><i>čau</i></span>
+      <span class="flier f1 cardlet"><b>serendipity</b><i>[EN] šťastná náhoda</i></span>
+      <span class="flier f2 cardlet"><b>bonjour</b><i>ahoj</i></span>
+      <span class="flier f3 cardlet"><b>danke</b><i>díky</i></span>
+      <span class="flier f4 cardlet"><b>ciao</b><i>čau</i></span>
     </div>
     <div class="hero-tilt" id="heroTilt">
       <h1 class="hero-title">
@@ -64,7 +63,7 @@
     </div>
     <p class="hero-sub">Kartičky, které znají rytmus tvého mozku. AI je vyrobí, spaced repetition je vrátí přesně ve chvíli, kdy začínáš zapomínat.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://duocards.xyz/" rel="noopener">Přihlásit se</a>
+      <a class="btn btn-primary" href="https://app.duocards.xyz/" rel="noopener">Přihlásit se</a>
       <a class="ghost" href="#demo">Podívej se, jak to funguje ↓</a>
     </div>
   </header>
@@ -85,11 +84,11 @@
     </div>
   </div>
 
-  <!-- 03 INTERAKTIVNÍ DEMO -->
+  <!-- 01 INTERAKTIVNÍ DEMO -->
   <section class="sec sec-demo bg-lime cut-up" id="demo" data-live>
     <div class="wrap cols">
       <div class="col-copy">
-        <span class="chapnum mono">03 / VYZKOUŠEJ</span>
+        <span class="chapnum mono">01 / VYZKOUŠEJ</span>
         <h2 class="big wt"><span class="wm"><span class="w">Švihni.</span></span> <span class="wm"><span class="w">Otoč.</span></span> <span class="wm"><span class="w">Nauč&nbsp;se.</span></span></h2>
         <p class="mono mono-note"><span>klik = otočit</span><span>→ vím</span><span>← nevím</span><span>↑ naučeno</span></p>
         <ul class="demo-points">
@@ -116,12 +115,12 @@
     </div>
   </section>
 
-  <!-- 04.1 AI PŘEKLADAČ -->
+  <!-- 02 AI PŘEKLADAČ -->
   <section class="sec chapter bg-blue cut-down" data-live>
     <div class="perf mono" aria-hidden="true">✂</div>
     <div class="wrap cols">
       <div class="col-copy">
-        <span class="chapnum mono">04.1 / AI PŘEKLADAČ</span>
+        <span class="chapnum mono">02 / AI PŘEKLADAČ</span>
         <h2 class="big wt"><span class="wm"><span class="w">Jedno</span></span> <span class="wm"><span class="w">klepnutí.</span></span> <span class="wm"><span class="w">Hotová</span></span> <span class="wm"><span class="w">kartička.</span></span></h2>
         <p>Žádné vypisování. Klepneš na slovo, AI ho přeloží, vysloví a zařadí do balíčku. Funguje ve 13+ jazycích.</p>
       </div>
@@ -139,11 +138,14 @@
     </div>
   </section>
 
-  <!-- 04.2 SPACED REPETITION -->
+  <!-- 03 SPACED REPETITION -->
   <section class="sec chapter bg-ink cut-up" data-live>
     <div class="perf mono" aria-hidden="true">✂</div>
     <div class="wrap">
-      <span class="chapnum mono">04.2 / SPACED REPETITION</span>
+      <div class="chaphead">
+        <span class="chapnum mono">03 / SPACED REPETITION</span>
+        <span class="mono badge">VE VÝVOJI</span>
+      </div>
       <h2 class="big wt wt-x"><span class="wm"><span class="w">Tvůj</span></span> <span class="wm"><span class="w">mozek</span></span> <span class="wm"><span class="w">má</span></span> <span class="wm"><span class="w">rytmus.</span></span> <span class="wm"><span class="w">My</span></span> <span class="wm"><span class="w">ho</span></span> <span class="wm"><span class="w">známe.</span></span></h2>
       <p class="narrow">Zapomínání je algoritmus. Spaced repetition má lepší: kartičku ti vrátí za den, za tři dny, za týden, za měsíc — vždy těsně předtím, než slovo vypadne.</p>
       <svg class="sr-svg" viewBox="0 0 640 150" role="img" aria-label="Časová osa opakování: 1 den, 3 dny, týden, měsíc">
@@ -160,15 +162,17 @@
     </div>
   </section>
 
-  <!-- 04.3 UČENÍ Z VIDEÍ A WEBU -->
+  <!-- 04 ROZŠÍŘENÍ PRO CHROME -->
   <section class="sec chapter bg-paper cut-down" data-live>
     <div class="perf mono" aria-hidden="true">✂</div>
     <div class="wrap cols">
       <div class="col-copy">
-        <span class="chapnum mono">04.3 / Z OBSAHU</span>
+        <div class="chaphead">
+          <span class="chapnum mono">04 / ROZŠÍŘENÍ PRO CHROME</span>
+          <span class="mono badge">VE VÝVOJI</span>
+        </div>
         <h2 class="big wt"><span class="wm"><span class="w">Koukej</span></span> <span class="wm"><span class="w">na</span></span> <span class="wm"><span class="w">videa.</span></span> <span class="wm"><span class="w">Slova</span></span> <span class="wm"><span class="w">se</span></span> <span class="wm"><span class="w">uloží</span></span> <span class="wm"><span class="w">sama.</span></span></h2>
         <p>Slovo z titulků → kartička. Z článku v Chromu → kartička. Učíš se z obsahu, na který stejně koukáš.</p>
-        <p class="mono badge">[ROZŠÍŘENÍ PRO CHROME]</p>
       </div>
       <div class="col-vis">
         <div class="player" id="player">
@@ -183,11 +187,11 @@
     </div>
   </section>
 
-  <!-- 04.4 KOMUNITA -->
+  <!-- 05 KOMUNITA -->
   <section class="sec chapter bg-green cut-up" data-live>
     <div class="perf mono" aria-hidden="true">✂</div>
     <div class="wrap">
-      <span class="chapnum mono">04.4 / KOMUNITA</span>
+      <span class="chapnum mono">05 / KOMUNITA</span>
       <h2 class="big wt"><span class="wm"><span class="w">Tisíce</span></span> <span class="wm"><span class="w">balíčků</span></span> <span class="wm"><span class="w">od</span></span> <span class="wm"><span class="w">lidí,</span></span> <span class="wm"><span class="w">co</span></span> <span class="wm"><span class="w">se</span></span> <span class="wm"><span class="w">učí</span></span> <span class="wm"><span class="w">to,</span></span> <span class="wm"><span class="w">co</span></span> <span class="wm"><span class="w">ty.</span></span></h2>
       <p class="narrow">Miliony kartiček od komunity čekají. Nebo si postavíš vlastní balíček za minutu.</p>
       <div class="decks">
@@ -203,10 +207,10 @@
     </div>
   </section>
 
-  <!-- 05 ČÍSLA -->
+  <!-- 06 ČÍSLA -->
   <section class="sec sec-stats bg-ink cut-down" id="stats" data-live>
     <div class="wrap">
-      <span class="chapnum mono">05 / SKÓRE</span>
+      <span class="chapnum mono">06 / SKÓRE</span>
       <h2 class="big wt"><span class="wm"><span class="w">Skóre,</span></span> <span class="wm"><span class="w">které</span></span> <span class="wm"><span class="w">roste.</span></span></h2>
       <div class="stats-grid">
         <div class="stat"><span class="stat-num"><span class="stat-val" data-target="13">0</span>+</span><span class="stat-label mono">JAZYKŮ</span></div>
@@ -250,15 +254,15 @@
         </div>
         <div class="flip-face flip-back">
           <span class="magnet" id="magnetWrap">
-            <a class="btn btn-final" id="finalCta" href="https://duocards.xyz/" rel="noopener">Přihlásit se →</a>
+            <a class="btn btn-final" id="finalCta" href="https://app.duocards.xyz/" rel="noopener">Přihlásit se →</a>
           </span>
           <p class="mono flip-note">Zdarma. Bez kreditky. Za minutu šviháš.</p>
-          <p class="mono flip-note dim">iOS · Android · Web</p>
         </div>
       </div>
     </div>
-    <footer class="colophon mono">DuoCards — kartičky, které znají rytmus tvého mozku. © 2026 · <a href="https://duocards.xyz/" rel="noopener">duocards.xyz</a></footer>
   </section>
+
+  <footer class="colophon mono">DuoCards — kartičky, které znají rytmus tvého mozku. © 2026 · <a href="https://app.duocards.xyz/" rel="noopener">app.duocards.xyz</a></footer>
 
 </div>
 <script src="script.js?v=4"></script>
