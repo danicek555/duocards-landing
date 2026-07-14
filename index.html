@@ -4,12 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DuoCards — nauč se slovo za 3 vteřiny</title>
-<meta name="description" content="Kartičky, které znají rytmus tvého mozku. AI je vyrobí, spaced repetition je vrátí přesně ve chvíli, kdy začínáš zapomínat. Přihlas se na app.duocards.com.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='12' y='6' width='42' height='52' rx='9' fill='%23141412'/%3E%3Crect x='8' y='4' width='42' height='52' rx='9' fill='%23C8F031' stroke='%23141412' stroke-width='4'/%3E%3Ctext x='29' y='41' font-family='Arial,sans-serif' font-size='26' font-weight='900' text-anchor='middle' fill='%23141412'%3ED%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Kartičky, které znají rytmus tvého mozku. AI je vyrobí, spaced repetition je vrátí přesně ve chvíli, kdy začínáš zapomínat. Přihlas se na duocards.xyz.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef2ff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12192b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='12' y='6' width='42' height='52' rx='9' fill='%237c3aed'/%3E%3Crect x='8' y='4' width='42' height='52' rx='9' fill='%234f46e5'/%3E%3Ctext x='29' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' text-anchor='middle' fill='%23ffffff'%3ED%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wdth,wght@62..125,400..900&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body id="top">
 <div class="page">
@@ -28,12 +30,12 @@
       <span class="brand-card" aria-hidden="true">Duo<br>Cards</span>
       <span class="brand-name">DuoCards</span>
     </a>
-    <a class="btn btn-nav" href="https://app.duocards.com" rel="noopener">Přihlásit se</a>
+    <a class="btn btn-nav" href="https://duocards.xyz/" rel="noopener">Přihlásit se</a>
   </nav>
 
   <!-- 01 HERO -->
   <header class="hero bg-paper">
-    <p class="hero-tags mono">[13+ JAZYKŮ]&ensp;[iOS · ANDROID · WEB]</p>
+    <p class="hero-tags"><span>13+ jazyků</span><span>iOS · Android · Web</span></p>
     <div class="hero-fliers" aria-hidden="true">
       <span class="flier f1 cardlet"><b>bonjour</b><i>ahoj</i></span>
       <span class="flier f2 cardlet"><b>danke</b><i>díky</i></span>
@@ -62,7 +64,7 @@
     </div>
     <p class="hero-sub">Kartičky, které znají rytmus tvého mozku. AI je vyrobí, spaced repetition je vrátí přesně ve chvíli, kdy začínáš zapomínat.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://app.duocards.com" rel="noopener">Přihlásit se</a>
+      <a class="btn btn-primary" href="https://duocards.xyz/" rel="noopener">Přihlásit se</a>
       <a class="ghost" href="#demo">Podívej se, jak to funguje ↓</a>
     </div>
   </header>
@@ -89,7 +91,7 @@
       <div class="col-copy">
         <span class="chapnum mono">03 / VYZKOUŠEJ</span>
         <h2 class="big wt"><span class="wm"><span class="w">Švihni.</span></span> <span class="wm"><span class="w">Otoč.</span></span> <span class="wm"><span class="w">Nauč&nbsp;se.</span></span></h2>
-        <p class="mono mono-note">[KLIK = OTOČIT]&ensp;[→ VÍM]&ensp;[← NEVÍM]&ensp;[↑ NAUČENO]</p>
+        <p class="mono mono-note"><span>klik = otočit</span><span>→ vím</span><span>← nevím</span><span>↑ naučeno</span></p>
         <ul class="demo-points">
           <li><b>Nevíš?</b> Kartička se vrátí na dno balíčku.</li>
           <li><b>Víš?</b> Posune se dál — a vrátí se, až ji začneš zapomínat.</li>
@@ -248,17 +250,17 @@
         </div>
         <div class="flip-face flip-back">
           <span class="magnet" id="magnetWrap">
-            <a class="btn btn-final" id="finalCta" href="https://app.duocards.com" rel="noopener">Přihlásit se →</a>
+            <a class="btn btn-final" id="finalCta" href="https://duocards.xyz/" rel="noopener">Přihlásit se →</a>
           </span>
           <p class="mono flip-note">Zdarma. Bez kreditky. Za minutu šviháš.</p>
           <p class="mono flip-note dim">iOS · Android · Web</p>
         </div>
       </div>
     </div>
-    <footer class="colophon mono">DUOCARDS — kartičky, které znají rytmus tvého mozku. © 2026 · <a href="https://www.duocards.com" rel="noopener">duocards.com</a> · Vytištěno prohlížečem, žádný strom nebyl pokácen.</footer>
+    <footer class="colophon mono">DuoCards — kartičky, které znají rytmus tvého mozku. © 2026 · <a href="https://duocards.xyz/" rel="noopener">duocards.xyz</a></footer>
   </section>
 
 </div>
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # DuoCards — landing page
 
-Animovaná jednostránková prezentace aplikace [DuoCards](https://www.duocards.com) — kartičky pro učení jazyků. Stránka láká, vysvětluje, co aplikace umí, a tlačítkem „Přihlásit se“ přesměruje na [app.duocards.com](https://app.duocards.com).
+Animovaná jednostránková prezentace aplikace [DuoCards](https://www.duocards.com) — kartičky pro učení jazyků. Stránka láká, vysvětluje, co aplikace umí, a tlačítkem „Přihlásit se“ přesměruje na [duocards.xyz](https://duocards.xyz/).
 
 **Živě:** [duocards-landing.vercel.app](https://duocards-landing.vercel.app)
 

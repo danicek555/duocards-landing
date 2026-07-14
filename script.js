@@ -9,7 +9,7 @@ const lerp = (a, b, t) => a + (b - a) * t;
 
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE = matchMedia('(pointer: fine)').matches;
-const APP_URL = 'https://app.duocards.com';
+const APP_URL = 'https://duocards.xyz/';
 
 const SPEAKER_SVG = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/><path d="M16 8a5 5 0 0 1 0 8" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/></svg>';
 
@@ -156,7 +156,7 @@ $$('.wt').forEach(t => $$('.wm', t).forEach((wm, i) => $('.w', wm).style.setProp
 })();
 
 /* ---------- konfety ---------- */
-const CONF_COLORS = ['#C8F031', '#2B4BF2', '#FF5A3C', '#141412', '#FBF7EE'];
+const CONF_COLORS = ['#4f46e5', '#7c3aed', '#34d399', '#f59e0b', '#818cf8'];
 let confLayer = null;
 const burst = (x, y, count) => {
   if (REDUCED) return;
