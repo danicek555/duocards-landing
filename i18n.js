@@ -85,8 +85,7 @@ const T = {
     statPiles: 'PILES',
     statTap: 'TAP PER CARD',
     statDecks: 'COMMUNITY DECKS',
-    statsLine: `${LANG_LABEL} languages. 3 piles. 1 app.`,
-    streak: '247 DAY STREAK',
+    streak: 'DAY STREAK',
     stampEn: 'English — play greeting',
     stampEs: 'Spanish — play greeting',
     stampDe: 'German — play greeting',
@@ -172,10 +171,10 @@ const T = {
     aiBody: `Žádné vypisování. Klepneš na slovo, AI ho přeloží, vysloví a zařadí do balíčku. Funguje ve ${LANG_LABEL} jazycích.`,
     aiTap: '↳ klepnutí',
     aiTrans: 'vlaštovka',
-    chap03: '03 / SPACED REPETITION',
+    chap03: '03 / OPAKOVÁNÍ V INTERVALECH',
     badgeDev: 'VE VÝVOJI',
     srTitle: 'Tvůj mozek má rytmus. My ho známe.',
-    srBody: 'Zapomínání je algoritmus. Spaced repetition má lepší: kartičku ti vrátí za den, za tři dny, za týden, za měsíc — vždy těsně předtím, než slovo vypadne.',
+    srBody: 'Každé slovo zapomínáš jinak. Opakování v intervalech ti kartičku ukáže za den, za tři dny, za týden nebo za měsíc — právě ve chvíli, kdy ji potřebuješ procvičit.',
     srAria: 'Časová osa opakování: 1 den, 3 dny, týden, měsíc',
     srD1: '1 DEN',
     srD2: '3 DNY',
@@ -202,8 +201,7 @@ const T = {
     statPiles: 'HROMÁDKY',
     statTap: 'KLEPNUTÍ NA KARTIČKU',
     statDecks: 'KOMUNITNÍCH BALÍČKŮ',
-    statsLine: `${LANG_LABEL} jazyků. 3 hromádky. 1 apka.`,
-    streak: '247 DNÍ V ŘADĚ',
+    streak: 'DNÍ V ŘADĚ',
     stampEn: 'Angličtina — přehrát pozdrav',
     stampEs: 'Španělština — přehrát pozdrav',
     stampDe: 'Němčina — přehrát pozdrav',
@@ -223,7 +221,7 @@ const T = {
     satWort: 'slovo',
     flipTitle: 'Tvoje první slovo čeká.',
     flipHint: '↓ scrolluj a otoč kartičku ↓',
-    flipNote: 'Zdarma. Bez kreditky. Za minutu šviháš.',
+    flipNote: 'Zdarma. Bez kreditky. Za minutu se učíš.',
     footer: 'DuoCards — kartičky, které znají rytmus tvého mozku. © 2026 · ',
     cardHint: 'klepni = otočit',
     cardAria: (w) => `Kartička ${w} — Enter otočí, šipky zařadí do hromádky`,
@@ -298,7 +296,7 @@ const applyLang = () => {
 
   const origin = siteOrigin();
   const home = `${origin}/`;
-  const ogImg = `${origin}/og-image.png`;
+  const ogImg = `${origin}/og-image-whatsapp.png`;
   setMeta('canonical', home, 'href');
   setMeta('og-url', home);
   setMeta('og-image', ogImg);

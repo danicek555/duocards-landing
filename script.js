@@ -232,6 +232,35 @@ const deckFeedback = (kind, x, y) => {
   setTimeout(() => el.remove(), 760);
 };
 
+/* Krátké UI tóny bez audio souborů; kontext vzniká až po interakci uživatele. */
+let feedbackAudio = null;
+const playFeedbackSound = kind => {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) return;
+  try {
+    feedbackAudio ||= new AudioCtx();
+    if (feedbackAudio.state === 'suspended') void feedbackAudio.resume();
+    const now = feedbackAudio.currentTime + .01;
+    const notes = kind === 'done'
+      ? [[523.25, 0, .18, .055], [659.25, .07, .2, .045], [783.99, .14, .24, .04]]
+      : kind === 'yes'
+        ? [[523.25, 0, .14, .045], [659.25, .075, .18, .038]]
+        : [[246.94, 0, .12, .025], [196, .07, .16, .02]];
+    notes.forEach(([frequency, delay, duration, volume]) => {
+      const oscillator = feedbackAudio.createOscillator();
+      const gain = feedbackAudio.createGain();
+      oscillator.type = kind === 'no' ? 'triangle' : 'sine';
+      oscillator.frequency.setValueAtTime(frequency, now + delay);
+      gain.gain.setValueAtTime(.0001, now + delay);
+      gain.gain.exponentialRampToValueAtTime(volume, now + delay + .018);
+      gain.gain.exponentialRampToValueAtTime(.0001, now + delay + duration);
+      oscillator.connect(gain).connect(feedbackAudio.destination);
+      oscillator.start(now + delay);
+      oscillator.stop(now + delay + duration + .02);
+    });
+  } catch (e) { /* zvukové efekty jsou jen bonus */ }
+};
+
 /* ---------- 03 demo balíček ---------- */
 (() => {
   const deckEl = $('#deck');
@@ -436,10 +465,22 @@ const deckFeedback = (kind, x, y) => {
         if (!el) { el = makeCard(c); els.set(c, el); }
         if (!el.isConnected) deckEl.appendChild(el);
         el.style.setProperty('--i', i);
+        el.classList.toggle('is-top', i === 0);
       } else if (el && el.isConnected) {
+        el.classList.remove('is-top');
         el.remove();
       }
     });
+  };
+
+  const animateNextCard = () => {
+    if (REDUCED) return;
+    const next = topCard();
+    if (!next) return;
+    next.classList.remove('promoted');
+    void next.offsetWidth;
+    next.classList.add('promoted');
+    setTimeout(() => next.classList.remove('promoted'), 520);
   };
 
   const updatePile = kind => {
@@ -456,6 +497,14 @@ const deckFeedback = (kind, x, y) => {
   const pileConfetti = pile => {
     const r = pile.getBoundingClientRect();
     burst(r.left + r.width / 2, r.top + r.height / 2, 12);
+  };
+
+  const mobileLearnedEffect = () => {
+    if (REDUCED || !matchMedia('(max-width: 560px)').matches) return;
+    deckEl.classList.remove('mobile-learned');
+    void deckEl.offsetWidth;
+    deckEl.classList.add('mobile-learned');
+    setTimeout(() => deckEl.classList.remove('mobile-learned'), 850);
   };
 
   const finish = () => {
@@ -478,6 +527,9 @@ const deckFeedback = (kind, x, y) => {
     const c = queue[0];
     const el = els.get(c);
     const landingKind = kind === 'yes' && c.knows >= 2 ? 'done' : kind;
+    playFeedbackSound(landingKind);
+    navigator.vibrate?.(landingKind === 'done' ? [12, 24, 18] : 10);
+    if (landingKind === 'done') mobileLearnedEffect();
     if (drag && drag.el === el) { drag = null; ticker.remove(dragTick); hideGhosts(); }
     const hadFocus = el && document.activeElement === el;
     interactions++;
@@ -490,7 +542,9 @@ const deckFeedback = (kind, x, y) => {
           : `translate(${dx}px, -120vh) scale(0.6)`;
       const r = el.getBoundingClientRect();
       deckFeedback(landingKind, r.left + r.width / 2, r.top + 54);
-      burst(r.left + r.width / 2, r.top + r.height * .34, landingKind === 'done' ? 32 : landingKind === 'yes' ? 18 : 12);
+      if (landingKind !== 'no') {
+        burst(r.left + r.width / 2, r.top + r.height * .34, landingKind === 'done' ? 32 : 18);
+      }
     }
     setTimeout(() => {
       queue.shift();
@@ -528,8 +582,9 @@ const deckFeedback = (kind, x, y) => {
       resolving = false;
       if (!queue.length || interactions >= 20) { finish(); return; }
       render();
+      animateNextCard();
       if (hadFocus) topCard()?.focus();
-    }, 480);
+    }, 600);
   };
 
   $('#btnNo').addEventListener('click', () => resolve('no'));
