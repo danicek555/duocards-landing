@@ -435,6 +435,7 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 .pile-yes .pile-num { color: var(--link); }
 .pile-done .pile-num { color: var(--em-text); }
 .pile.lift { transform: translateY(-4px); }
+.pile.celebrate { animation: pileCelebrate .55s cubic-bezier(.2, .9, .25, 1); }
 .pile-no.lift { border-color: var(--red); background: var(--red-tint); }
 .pile-yes.lift { border-color: var(--i600); background: var(--tint); }
 .pile-done.lift { border-color: var(--em); background: var(--em-tint); }
@@ -444,6 +445,12 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 }
 .pile.tick .pile-num { animation: tickPop .3s; }
 @keyframes tickPop { 40% { transform: scale(1.35); } }
+@keyframes pileCelebrate {
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(-8px) scale(1.12) rotate(-2deg); }
+  68% { transform: translateY(2px) scale(.97) rotate(1deg); }
+  100% { transform: translateY(0) scale(1); }
+}
 
 .deck { position: relative; width: min(320px, 78vw); height: 400px; perspective: 1100px; }
 .dcard {
@@ -459,6 +466,12 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 .dcard:focus-visible { box-shadow: 0 0 0 2px var(--i500); outline: none; }
 .dcard.dragging { cursor: grabbing; transition: none; }
 .dcard.fly { transition: transform .35s ease-in, opacity .3s ease-in; opacity: 0; pointer-events: none; }
+.dcard.fly-yes { animation: flyYes .42s cubic-bezier(.2, .85, .25, 1) forwards; }
+.dcard.fly-no { animation: flyNo .42s cubic-bezier(.2, .85, .25, 1) forwards; }
+.dcard.fly-done { animation: flyDone .46s cubic-bezier(.2, .85, .25, 1) forwards; }
+@keyframes flyYes { 0% { opacity: 1; } 28% { filter: saturate(1.45) brightness(1.08); } 100% { opacity: 0; transform: translate(150%, -16px) rotate(30deg) scale(.92); } }
+@keyframes flyNo { 0% { opacity: 1; } 28% { filter: saturate(1.4) brightness(1.06); } 100% { opacity: 0; transform: translate(-150%, 16px) rotate(-30deg) scale(.92); } }
+@keyframes flyDone { 0% { opacity: 1; } 30% { filter: saturate(1.5) brightness(1.1); } 100% { opacity: 0; transform: translate(0, -120vh) rotate(8deg) scale(.6); } }
 .dcard-inner {
   position: absolute;
   inset: 0;
@@ -521,7 +534,7 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 .dtts {
   position: absolute;
   right: 14px; bottom: 12px;
-  width: 38px; height: 38px;
+  width: 44px; height: 44px;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--tint);
@@ -530,9 +543,11 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   display: grid;
   place-content: center;
   transition: all .15s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   z-index: 2;
 }
-.dtts:hover { border-color: var(--i600); }
+.dtts:hover, .dtts:focus-visible, .dtts.is-speaking { border-color: var(--i600); box-shadow: 0 0 0 4px var(--tint); transform: scale(1.06); }
 .dtts svg { width: 18px; height: 18px; fill: currentColor; }
 
 .stamp {
@@ -859,6 +874,25 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 /* ---------- konfety ---------- */
 .confetti-layer { position: fixed; inset: 0; pointer-events: none; z-index: 90; }
 .confetto { position: absolute; width: 8px; height: 12px; border-radius: 2px; }
+.deck-feedback {
+  position: fixed;
+  z-index: 91;
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  animation: feedbackFloat .72s cubic-bezier(.2, .9, .25, 1) forwards;
+}
+.deck-feedback.yes { color: var(--i600); }
+.deck-feedback.no { color: var(--red); }
+.deck-feedback.done { color: var(--em-text); }
+@keyframes feedbackFloat {
+  0% { opacity: 0; transform: translate(-50%, 8px) scale(.72) rotate(-5deg); }
+  18% { opacity: 1; transform: translate(-50%, -4px) scale(1.12) rotate(2deg); }
+  100% { opacity: 0; transform: translate(-50%, -52px) scale(.96) rotate(-2deg); }
+}
 
 /* ---------- pauza animací mimo viewport ---------- */
 .anim-off .flier,
@@ -884,6 +918,12 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   .deck { height: 360px; }
   .hero { padding-top: 84px; }
   .hero-cta { gap: 16px; }
+  .piles { gap: 6px; width: 100%; justify-content: center; }
+  .pile { padding: 6px 10px; gap: 5px; }
+  .pile-label { font-size: 10px; }
+  .deck-actions { gap: 8px; }
+  .act { min-height: 44px; padding-inline: 12px; }
+  .dtts { right: 10px; bottom: 10px; }
   .flip-scene { width: 92vw; }
   .satellites { display: none; }
 }
@@ -907,5 +947,6 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   .flip-hint { visibility: hidden; }
   .act-done { display: inline-block; }
   .dcard, .dcard-inner { transition-duration: .01s; }
+  .dcard.fly-yes, .dcard.fly-no, .dcard.fly-done, .pile.celebrate, .deck-feedback { animation: none; }
   .ghostcard { display: none; }
 }

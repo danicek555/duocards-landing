@@ -63,6 +63,7 @@ const speak = (text, lang) => {
   if (!TTS) return;
   try {
     speechSynthesis.cancel();
+    speechSynthesis.resume?.();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = lang;
     u.rate = 0.95;
@@ -218,6 +219,17 @@ const burst = (x, y, count) => {
     else parts.forEach(p => p.el.remove());
   };
   requestAnimationFrame(step);
+};
+
+const deckFeedback = (kind, x, y) => {
+  if (REDUCED) return;
+  const el = document.createElement('span');
+  el.className = `deck-feedback ${kind}`;
+  el.textContent = kind === 'done' ? '★ LEARNED' : kind === 'yes' ? '✓ NICE' : '↺ AGAIN';
+  el.style.left = `${x}px`;
+  el.style.top = `${y}px`;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 760);
 };
 
 /* ---------- 03 demo balíček ---------- */
@@ -389,10 +401,20 @@ const burst = (x, y, count) => {
     el.setAttribute('role', 'group');
     el.setAttribute('aria-label', L().cardAria(c.front));
     el.innerHTML = cardHtml(c);
-    $$('.dtts', el).forEach(b => b.addEventListener('click', ev => {
-      ev.stopPropagation();
-      speak(c.front, c.lang);
-    }));
+    $$('.dtts', el).forEach(b => {
+      const play = ev => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        const isBack = !!ev.currentTarget.closest('.dback');
+        speak(isBack ? cardBack(c) : c.front, c.lang);
+        b.classList.add('is-speaking');
+        clearTimeout(b._speakTimer);
+        b._speakTimer = setTimeout(() => b.classList.remove('is-speaking'), 520);
+      };
+      b.addEventListener('pointerdown', ev => ev.stopPropagation(), { passive: true });
+      b.addEventListener('pointerup', ev => ev.stopPropagation(), { passive: true });
+      b.addEventListener('click', play);
+    });
     el.addEventListener('click', () => {
       if (el === topCard() && !el.dataset.moved && !finished) toggleFlip(el);
     });
@@ -426,6 +448,9 @@ const burst = (x, y, count) => {
     pile.classList.remove('tick');
     void pile.offsetWidth; // restart animace
     pile.classList.add('tick');
+    pile.classList.remove('celebrate');
+    void pile.offsetWidth;
+    pile.classList.add('celebrate');
   };
 
   const pileConfetti = pile => {
@@ -452,16 +477,20 @@ const burst = (x, y, count) => {
     resolving = true;
     const c = queue[0];
     const el = els.get(c);
+    const landingKind = kind === 'yes' && c.knows >= 2 ? 'done' : kind;
     if (drag && drag.el === el) { drag = null; ticker.remove(dragTick); hideGhosts(); }
     const hadFocus = el && document.activeElement === el;
     interactions++;
     if (el) {
-      el.classList.add('fly');
+      el.classList.add('fly', `fly-${landingKind}`);
       el.style.transform = kind === 'yes'
         ? `translate(150%, ${dy}px) rotate(30deg)`
         : kind === 'no'
           ? `translate(-150%, ${dy}px) rotate(-30deg)`
           : `translate(${dx}px, -120vh) scale(0.6)`;
+      const r = el.getBoundingClientRect();
+      deckFeedback(landingKind, r.left + r.width / 2, r.top + 54);
+      burst(r.left + r.width / 2, r.top + r.height * .34, landingKind === 'done' ? 32 : landingKind === 'yes' ? 18 : 12);
     }
     setTimeout(() => {
       queue.shift();
@@ -491,7 +520,7 @@ const burst = (x, y, count) => {
       updatePile(pileKind);
       if (el) {
         el.remove();
-        el.classList.remove('fly', 'flipped');
+        el.classList.remove('fly', 'fly-yes', 'fly-no', 'fly-done', 'flipped');
         el.style.transform = '';
         clearDragVars(el);
       }
@@ -500,7 +529,7 @@ const burst = (x, y, count) => {
       if (!queue.length || interactions >= 20) { finish(); return; }
       render();
       if (hadFocus) topCard()?.focus();
-    }, 360);
+    }, 480);
   };
 
   $('#btnNo').addEventListener('click', () => resolve('no'));
