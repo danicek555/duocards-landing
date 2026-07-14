@@ -38,6 +38,7 @@
   --grad-to: #e0e7ff;
   --grad: linear-gradient(135deg, var(--grad-from), var(--grad-to));
   --chrome-bg: var(--grad-from);
+  --hero-bg: var(--grad);
   --grad-dark-sec: linear-gradient(135deg, #12192b, #0a0f1e);
   --ai-grad: linear-gradient(90deg, #7c3aed, #4f46e5);
   --ai-surface: linear-gradient(135deg, #f5f3ff, #eef2ff);
@@ -75,6 +76,7 @@
     --grad-to: #1d2739;
     --grad: linear-gradient(135deg, var(--grad-from), var(--grad-to));
     --chrome-bg: var(--grad-to);
+    --hero-bg: var(--grad-to);
     --ai-surface: linear-gradient(135deg, rgba(76, 29, 149, .2), rgba(49, 46, 129, .2));
     --brand-grad: linear-gradient(90deg, #818cf8, #a78bfa);
     --em-text: #34d399;
@@ -142,7 +144,13 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   color: var(--link);
   font-weight: 500;
   text-decoration: none;
+  border: 0;
   border-bottom: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
   transition: border-color .15s;
 }
 .ghost:hover { border-color: var(--link); }
@@ -188,6 +196,27 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   pointer-events: none;
 }
 .nav > * { pointer-events: auto; }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lang-toggle {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.lang-toggle:hover {
+  border-color: var(--link);
+  color: var(--heading);
+}
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .brand-card {
   width: 34px; height: 44px;
@@ -246,7 +275,7 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   flex-direction: column;
   justify-content: center;
   padding: clamp(90px, 14vh, 150px) clamp(20px, 6vw, 64px) 72px;
-  background: var(--grad);
+  background: var(--hero-bg);
   position: relative;
   overflow: hidden;
 }
@@ -358,7 +387,6 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 .chapter.bg-ink, .sec-stats { background: var(--grad-dark-sec); }
 .chapter.bg-paper { background: var(--bg); }
 .chapter.bg-green { background: var(--em-surface); }
-.sec-final { background: var(--grad); }
 .perf { display: none; }
 
 /* tmavé sekce — texty */
@@ -753,11 +781,16 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   justify-content: center;
   overflow: hidden;
   padding-bottom: 0;
+  background: var(--hero-bg);
 }
 .flip-scene {
   position: relative;
   perspective: 1200px;
   width: min(86vw, 660px);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .satellites { position: absolute; inset: -12% -18%; pointer-events: none; }
 .sat { position: absolute; opacity: .85; }
@@ -807,8 +840,9 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   color: var(--muted);
   text-align: center;
   background: transparent;
-  padding: 28px 20px 32px;
+  padding: 0 20px 32px;
   width: 100%;
+  flex-shrink: 0;
   position: relative;
   z-index: 2;
 }

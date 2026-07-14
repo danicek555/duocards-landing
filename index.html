@@ -1,70 +1,100 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DuoCards — nauč se slovo za 3 vteřiny</title>
-<meta name="description" content="Kartičky, které znají rytmus tvého mozku. AI je vyrobí, spaced repetition je vrátí přesně ve chvíli, kdy začínáš zapomínat. Přihlas se na app.duocards.xyz.">
+<title>DuoCards — AI Flashcards to Learn Any Language</title>
+<meta name="description" id="meta-desc" content="Learn vocabulary in 3 seconds with AI flashcards and spaced repetition. 13+ languages, swipe-to-study decks, free web app. Start at app.duocards.xyz.">
+<meta name="keywords" id="meta-keywords" content="language learning, flashcards, spaced repetition, vocabulary app, learn Spanish, learn German, AI translator, language flashcards, memorize words, DuoCards">
+<meta name="author" content="DuoCards">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" id="canonical" href="https://duocards.xyz/">
+<link rel="alternate" hreflang="en" data-hreflang="en" href="https://duocards.xyz/?lang=en">
+<link rel="alternate" hreflang="cs" data-hreflang="cs" href="https://duocards.xyz/?lang=cs">
+<link rel="alternate" hreflang="x-default" href="https://duocards.xyz/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DuoCards">
+<meta property="og:url" id="og-url" content="https://duocards.xyz/">
+<meta property="og:title" id="og-title" content="DuoCards — Learn a Word in 3 Seconds">
+<meta property="og:description" id="og-desc" content="AI flashcards that know when you start forgetting. Swipe, flip, and master 13+ languages — free on the web.">
+<meta property="og:image" id="og-image" content="https://duocards.xyz/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" id="og-image-alt" content="DuoCards — AI flashcards for language learning">
+<meta property="og:locale" id="og-locale" content="en_US">
+<meta property="og:locale:alternate" content="cs_CZ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="DuoCards — Learn a Word in 3 Seconds">
+<meta name="twitter:description" id="tw-desc" content="AI flashcards that know when you start forgetting. Swipe, flip, and master 13+ languages — free on the web.">
+<meta name="twitter:image" id="tw-image" content="https://duocards.xyz/og-image.svg">
+<meta name="application-name" content="DuoCards">
+<meta name="apple-mobile-web-app-title" content="DuoCards">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef2ff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1d2739">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='12' y='6' width='42' height='52' rx='9' fill='%237c3aed'/%3E%3Crect x='8' y='4' width='42' height='52' rx='9' fill='%234f46e5'/%3E%3Ctext x='29' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' text-anchor='middle' fill='%23ffffff'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/og-image.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=11">
+<script type="application/ld+json" id="jsonld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://duocards.xyz/#website","name":"DuoCards","url":"https://duocards.xyz/","description":"DuoCards is a free web app for learning languages with AI flashcards, spaced repetition, and swipe-based study decks in 13+ languages.","inLanguage":"en-US","publisher":{"@id":"https://duocards.xyz/#organization"}},{"@type":"Organization","@id":"https://duocards.xyz/#organization","name":"DuoCards","url":"https://duocards.xyz/","logo":{"@type":"ImageObject","url":"https://duocards.xyz/og-image.svg"}},{"@type":"WebApplication","@id":"https://duocards.xyz/#app","name":"DuoCards","url":"https://app.duocards.xyz/","applicationCategory":"EducationalApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"DuoCards is a free web app for learning languages with AI flashcards, spaced repetition, and swipe-based study decks in 13+ languages.","inLanguage":["en","cs"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"AI flashcards, spaced repetition, 13+ languages, swipe learning, AI translator"}]}</script>
 </head>
 <body id="top">
 <div class="page">
 
   <!-- zbloudilé kartičky s paralaxou -->
   <div class="stray-layer" aria-hidden="true">
-    <div class="stray s2"><span class="stray-in cardlet"><b>Fernweh</b><i>[DE] touha cestovat</i></span></div>
-    <div class="stray s3"><span class="stray-in cardlet"><b>sobremesa</b><i>[ES] povídání po jídle</i></span></div>
-    <div class="stray s4"><span class="stray-in cardlet"><b>木漏れ日</b><i>[JA] světlo skrz listí</i></span></div>
-    <div class="stray s5"><span class="stray-in cardlet"><b>saudade</b><i>[PT] sladkobolný stesk</i></span></div>
+    <div class="stray s2"><span class="stray-in cardlet"><b>Fernweh</b><i data-i18n="strayFernweh">[DE] wanderlust</i></span></div>
+    <div class="stray s3"><span class="stray-in cardlet"><b>sobremesa</b><i data-i18n="straySobremesa">[ES] after-dinner chat</i></span></div>
+    <div class="stray s4"><span class="stray-in cardlet"><b>木漏れ日</b><i data-i18n="strayKomore">[JA] light through leaves</i></span></div>
+    <div class="stray s5"><span class="stray-in cardlet"><b>saudade</b><i data-i18n="straySaudade">[PT] bittersweet longing</i></span></div>
   </div>
 
   <nav class="nav">
-    <a class="brand" href="#top" aria-label="DuoCards — začátek stránky">
+    <a class="brand" href="/" aria-label="DuoCards — top of page" data-i18n-attr="aria-label:brandAria">
       <span class="brand-name">DuoCards</span>
     </a>
-    <a class="btn btn-nav" href="https://app.duocards.xyz/" rel="noopener">Přihlásit se</a>
+    <div class="nav-actions">
+      <button class="lang-toggle mono" id="langToggle" type="button" aria-label="Switch to Czech">CS</button>
+      <a class="btn btn-nav" href="https://app.duocards.xyz/" rel="noopener" data-i18n="login">Sign in</a>
+    </div>
   </nav>
 
   <!-- 01 HERO -->
   <header class="hero bg-paper">
     <div class="hero-fliers" aria-hidden="true">
-      <span class="flier f1 cardlet"><b>serendipity</b><i>[EN] šťastná náhoda</i></span>
-      <span class="flier f2 cardlet"><b>bonjour</b><i>ahoj</i></span>
-      <span class="flier f3 cardlet"><b>danke</b><i>díky</i></span>
-      <span class="flier f4 cardlet"><b>ciao</b><i>čau</i></span>
+      <span class="flier f1 cardlet"><b>serendipity</b><i data-i18n="flierSerendipity">[EN] happy accident</i></span>
+      <span class="flier f2 cardlet"><b>bonjour</b><i data-i18n="flierBonjour">hello</i></span>
+      <span class="flier f3 cardlet"><b>danke</b><i data-i18n="flierDanke">thanks</i></span>
+      <span class="flier f4 cardlet"><b>ciao</b><i data-i18n="flierCiao">hey</i></span>
     </div>
     <div class="hero-tilt" id="heroTilt">
       <h1 class="hero-title">
-        <span class="hline"><span class="hword hw1">Nauč&nbsp;se</span></span>
+        <span class="hline"><span class="hword hw1">Learn</span></span>
         <span class="hline hslot">
           <span class="hword hw2">
             <span class="slot" id="slot">
               <span class="slot-track" id="slotTrack">
-                <span class="slot-word" lang="es" data-tag="= AHOJ [ES]">HOLA</span>
-                <span class="slot-word" lang="en" data-tag="= AHOJ [EN]">HELLO</span>
-                <span class="slot-word" lang="fr" data-tag="= AHOJ [FR]">BONJOUR</span>
-                <span class="slot-word" lang="ja" data-tag="= AHOJ [JA]">こんにちは</span>
-                <span class="slot-word" lang="de" data-tag="= AHOJ [DE]">HALLO</span>
-                <span class="slot-word" lang="ko" data-tag="= AHOJ [KO]">안녕</span>
+                <span class="slot-word" lang="es" data-tag="= HELLO [ES]">HOLA</span>
+                <span class="slot-word" lang="en" data-tag="= HELLO [EN]">HELLO</span>
+                <span class="slot-word" lang="fr" data-tag="= HELLO [FR]">BONJOUR</span>
+                <span class="slot-word" lang="ja" data-tag="= HELLO [JA]">こんにちは</span>
+                <span class="slot-word" lang="de" data-tag="= HELLO [DE]">HALLO</span>
+                <span class="slot-word" lang="ko" data-tag="= HELLO [KO]">안녕</span>
               </span>
             </span>
-            <span class="slot-tag mono" id="slotTag" aria-hidden="true">= AHOJ [ES]</span>
+            <span class="slot-tag mono" id="slotTag" aria-hidden="true">= HELLO [ES]</span>
           </span>
         </span>
-        <span class="hline"><span class="hword hw3">za&nbsp;3&nbsp;vteřiny</span></span>
+        <span class="hline"><span class="hword hw3">in&nbsp;3&nbsp;seconds</span></span>
       </h1>
     </div>
-    <p class="hero-sub">Kartičky, které znají rytmus tvého mozku. AI je vyrobí, spaced repetition je vrátí přesně ve chvíli, kdy začínáš zapomínat.</p>
+    <p class="hero-sub" data-i18n="heroSub">Flashcards that know the rhythm of your brain. AI builds them, spaced repetition brings them back right when you start forgetting.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://app.duocards.xyz/" rel="noopener">Přihlásit se</a>
-      <a class="ghost" href="#demo">Podívej se, jak to funguje ↓</a>
+      <a class="btn btn-primary" href="https://app.duocards.xyz/" rel="noopener" data-i18n="login">Sign in</a>
+      <button type="button" class="ghost" data-scroll-to="demo" data-i18n="heroCta">See how it works ↓</button>
     </div>
   </header>
 
@@ -88,27 +118,27 @@
   <section class="sec sec-demo bg-lime cut-up" id="demo" data-live>
     <div class="wrap cols">
       <div class="col-copy">
-        <span class="chapnum mono">01 / VYZKOUŠEJ</span>
-        <h2 class="big wt"><span class="wm"><span class="w">Švihni.</span></span> <span class="wm"><span class="w">Otoč.</span></span> <span class="wm"><span class="w">Nauč&nbsp;se.</span></span></h2>
-        <p class="mono mono-note"><span>klik = otočit</span><span>→ vím</span><span>← nevím</span><span>↑ naučeno</span></p>
+        <span class="chapnum mono" data-i18n="chap01">01 / TRY IT</span>
+        <h2 class="big wt" data-i18n-wt="demoTitle">Swipe. Flip. Learn.</h2>
+        <p class="mono mono-note"><span>click = flip</span><span>→ know</span><span>← don't know</span><span>↑ learned</span></p>
         <ul class="demo-points">
-          <li><b>Nevíš?</b> Kartička se vrátí na dno balíčku.</li>
-          <li><b>Víš?</b> Posune se dál — a vrátí se, až ji začneš zapomínat.</li>
-          <li><b>Třikrát víš?</b> Naučeno. Napořád.</li>
+          <li><b>Don't know?</b> The card goes back to the bottom of the deck.</li>
+          <li><b>Know it?</b> It moves on — and comes back when you start forgetting.</li>
+          <li><b>Know it three times?</b> Learned. For good.</li>
         </ul>
       </div>
       <div class="col-deck">
         <div class="piles">
-          <div class="pile pile-no" data-pile="no"><span class="pile-label">NEVÍM</span><span class="pile-num">0</span></div>
-          <div class="pile pile-yes" data-pile="yes"><span class="pile-label">VÍM</span><span class="pile-num">0</span></div>
-          <div class="pile pile-done" data-pile="done"><span class="pile-label">NAUČENO</span><span class="pile-num">0</span></div>
+          <div class="pile pile-no" data-pile="no"><span class="pile-label" data-i18n="pileNo">DON'T KNOW</span><span class="pile-num">0</span></div>
+          <div class="pile pile-yes" data-pile="yes"><span class="pile-label" data-i18n="pileYes">KNOW</span><span class="pile-num">0</span></div>
+          <div class="pile pile-done" data-pile="done"><span class="pile-label" data-i18n="pileDone">LEARNED</span><span class="pile-num">0</span></div>
         </div>
         <div class="deck" id="deck"></div>
         <div class="deck-actions" id="deckActions">
-          <button class="act act-no" id="btnNo" type="button">✕ Nevím</button>
-          <button class="act act-flip" id="btnFlip" type="button">Otočit</button>
-          <button class="act act-yes" id="btnYes" type="button">✓ Vím</button>
-          <button class="act act-done" id="btnDone" type="button">↑ Naučeno</button>
+          <button class="act act-no" id="btnNo" type="button" data-i18n="btnNo">✕ Don't know</button>
+          <button class="act act-flip" id="btnFlip" type="button" data-i18n="btnFlip">Flip</button>
+          <button class="act act-yes" id="btnYes" type="button" data-i18n="btnYes">✓ Know</button>
+          <button class="act act-done" id="btnDone" type="button" data-i18n="btnDone">↑ Learned</button>
         </div>
         <p class="sr-only" id="deckLive" aria-live="polite"></p>
       </div>
@@ -120,18 +150,18 @@
     <div class="perf mono" aria-hidden="true">✂</div>
     <div class="wrap cols">
       <div class="col-copy">
-        <span class="chapnum mono">02 / AI PŘEKLADAČ</span>
-        <h2 class="big wt"><span class="wm"><span class="w">Jedno</span></span> <span class="wm"><span class="w">klepnutí.</span></span> <span class="wm"><span class="w">Hotová</span></span> <span class="wm"><span class="w">kartička.</span></span></h2>
-        <p>Žádné vypisování. Klepneš na slovo, AI ho přeloží, vysloví a zařadí do balíčku. Funguje ve 13+ jazycích.</p>
+        <span class="chapnum mono" data-i18n="chap02">02 / AI TRANSLATOR</span>
+        <h2 class="big wt" data-i18n-wt="aiTitle">One tap. Done card.</h2>
+        <p data-i18n="aiBody">No typing. Tap a word, AI translates it, pronounces it, and adds it to your deck. Works in 13+ languages.</p>
       </div>
       <div class="col-vis">
         <div class="ai-mock">
           <p class="ai-line" lang="es">La <span class="ai-word">golondrina<span class="ai-dot"></span></span> vuela al sur.</p>
-          <span class="ai-arrow mono" aria-hidden="true">↳ klepnutí</span>
+          <span class="ai-arrow mono" aria-hidden="true" data-i18n="aiTap">↳ tap</span>
           <div class="mc cardlet">
             <span class="mc-code mono">[ES]</span>
             <span class="mc-word">golondrina</span>
-            <span class="mc-trans">vlaštovka</span>
+            <span class="mc-trans" data-i18n="aiTrans">swallow</span>
           </div>
         </div>
       </div>
@@ -143,21 +173,21 @@
     <div class="perf mono" aria-hidden="true">✂</div>
     <div class="wrap">
       <div class="chaphead">
-        <span class="chapnum mono">03 / SPACED REPETITION</span>
-        <span class="mono badge">VE VÝVOJI</span>
+        <span class="chapnum mono" data-i18n="chap03">03 / SPACED REPETITION</span>
+        <span class="mono badge" data-i18n="badgeDev">IN DEVELOPMENT</span>
       </div>
-      <h2 class="big wt wt-x"><span class="wm"><span class="w">Tvůj</span></span> <span class="wm"><span class="w">mozek</span></span> <span class="wm"><span class="w">má</span></span> <span class="wm"><span class="w">rytmus.</span></span> <span class="wm"><span class="w">My</span></span> <span class="wm"><span class="w">ho</span></span> <span class="wm"><span class="w">známe.</span></span></h2>
-      <p class="narrow">Zapomínání je algoritmus. Spaced repetition má lepší: kartičku ti vrátí za den, za tři dny, za týden, za měsíc — vždy těsně předtím, než slovo vypadne.</p>
-      <svg class="sr-svg" viewBox="0 0 640 150" role="img" aria-label="Časová osa opakování: 1 den, 3 dny, týden, měsíc">
+      <h2 class="big wt wt-x" data-i18n-wt="srTitle">Your brain has a rhythm. We know it.</h2>
+      <p class="narrow" data-i18n="srBody">Forgetting is an algorithm. Spaced repetition has a better one: it brings a card back in a day, three days, a week, a month — always just before the word slips away.</p>
+      <svg class="sr-svg" viewBox="0 0 640 150" role="img" data-i18n-attr="aria-label:srAria">
         <path class="sr-path" d="M24 70 H616" pathLength="1000"/>
         <circle class="sr-dot d1" cx="24" cy="70" r="9"/>
         <circle class="sr-dot d2" cx="120" cy="70" r="9"/>
         <circle class="sr-dot d3" cx="300" cy="70" r="9"/>
         <circle class="sr-dot d4" cx="616" cy="70" r="9"/>
-        <text class="sr-label" x="24" y="110" text-anchor="start">1 DEN</text>
-        <text class="sr-label" x="120" y="110" text-anchor="middle">3 DNY</text>
-        <text class="sr-label" x="300" y="110" text-anchor="middle">TÝDEN</text>
-        <text class="sr-label" x="616" y="110" text-anchor="end">MĚSÍC</text>
+        <text class="sr-label" x="24" y="110" text-anchor="start">1 DAY</text>
+        <text class="sr-label" x="120" y="110" text-anchor="middle">3 DAYS</text>
+        <text class="sr-label" x="300" y="110" text-anchor="middle">WEEK</text>
+        <text class="sr-label" x="616" y="110" text-anchor="end">MONTH</text>
       </svg>
     </div>
   </section>
@@ -168,11 +198,11 @@
     <div class="wrap cols">
       <div class="col-copy">
         <div class="chaphead">
-          <span class="chapnum mono">04 / ROZŠÍŘENÍ PRO CHROME</span>
-          <span class="mono badge">VE VÝVOJI</span>
+          <span class="chapnum mono" data-i18n="chap04">04 / CHROME EXTENSION</span>
+          <span class="mono badge" data-i18n="badgeDev">IN DEVELOPMENT</span>
         </div>
-        <h2 class="big wt"><span class="wm"><span class="w">Koukej</span></span> <span class="wm"><span class="w">na</span></span> <span class="wm"><span class="w">videa.</span></span> <span class="wm"><span class="w">Slova</span></span> <span class="wm"><span class="w">se</span></span> <span class="wm"><span class="w">uloží</span></span> <span class="wm"><span class="w">sama.</span></span></h2>
-        <p>Slovo z titulků → kartička. Z článku v Chromu → kartička. Učíš se z obsahu, na který stejně koukáš.</p>
+        <h2 class="big wt" data-i18n-wt="chromeTitle">Watch videos. Words save themselves.</h2>
+        <p data-i18n="chromeBody">Word from subtitles → card. Word from a Chrome article → card. Learn from content you already consume.</p>
       </div>
       <div class="col-vis">
         <div class="player" id="player">
@@ -191,18 +221,18 @@
   <section class="sec chapter bg-green cut-up" data-live>
     <div class="perf mono" aria-hidden="true">✂</div>
     <div class="wrap">
-      <span class="chapnum mono">05 / KOMUNITA</span>
-      <h2 class="big wt"><span class="wm"><span class="w">Tisíce</span></span> <span class="wm"><span class="w">balíčků</span></span> <span class="wm"><span class="w">od</span></span> <span class="wm"><span class="w">lidí,</span></span> <span class="wm"><span class="w">co</span></span> <span class="wm"><span class="w">se</span></span> <span class="wm"><span class="w">učí</span></span> <span class="wm"><span class="w">to,</span></span> <span class="wm"><span class="w">co</span></span> <span class="wm"><span class="w">ty.</span></span></h2>
-      <p class="narrow">Miliony kartiček od komunity čekají. Nebo si postavíš vlastní balíček za minutu.</p>
+      <span class="chapnum mono" data-i18n="chap05">05 / COMMUNITY</span>
+      <h2 class="big wt" data-i18n-wt="commTitle">Thousands of decks from people learning what you are.</h2>
+      <p class="narrow" data-i18n="commBody">Millions of community flashcards are waiting. Or build your own deck in a minute.</p>
       <div class="decks">
-        <div class="deckcard cardlet" style="--wave:0"><span class="avatar av1">MK</span><b>Španělština do letadla</b><i class="mono">324 karet</i></div>
-        <div class="deckcard cardlet" style="--wave:1"><span class="avatar av2">AN</span><b>Kuchyňská němčina</b><i class="mono">187 karet</i></div>
-        <div class="deckcard cardlet" style="--wave:2"><span class="avatar av3">JI</span><b>K-pop slovník</b><i class="mono">512 karet</i></div>
-        <div class="deckcard cardlet" style="--wave:3"><span class="avatar av4">PT</span><b>Angličtina na pohovor</b><i class="mono">96 karet</i></div>
-        <div class="deckcard cardlet" style="--wave:1"><span class="avatar av2">KL</span><b>Japonština z anime</b><i class="mono">438 karet</i></div>
-        <div class="deckcard cardlet" style="--wave:2"><span class="avatar av3">EV</span><b>Italština na dovolenou</b><i class="mono">203 karet</i></div>
-        <div class="deckcard cardlet" style="--wave:3"><span class="avatar av4">RS</span><b>Francouzština pro gurmány</b><i class="mono">151 karet</i></div>
-        <div class="deckcard cardlet" style="--wave:4"><span class="avatar av1">DA</span><b>Portugalština na surf</b><i class="mono">78 karet</i></div>
+        <div class="deckcard cardlet" style="--wave:0"><span class="avatar av1">MK</span><b>Spanish for your flight</b><i class="mono">324 cards</i></div>
+        <div class="deckcard cardlet" style="--wave:1"><span class="avatar av2">AN</span><b>Kitchen German</b><i class="mono">187 cards</i></div>
+        <div class="deckcard cardlet" style="--wave:2"><span class="avatar av3">JI</span><b>K-pop vocabulary</b><i class="mono">512 cards</i></div>
+        <div class="deckcard cardlet" style="--wave:3"><span class="avatar av4">PT</span><b>English for interviews</b><i class="mono">96 cards</i></div>
+        <div class="deckcard cardlet" style="--wave:1"><span class="avatar av2">KL</span><b>Japanese from anime</b><i class="mono">438 cards</i></div>
+        <div class="deckcard cardlet" style="--wave:2"><span class="avatar av3">EV</span><b>Italian for vacation</b><i class="mono">203 cards</i></div>
+        <div class="deckcard cardlet" style="--wave:3"><span class="avatar av4">RS</span><b>French for foodies</b><i class="mono">151 cards</i></div>
+        <div class="deckcard cardlet" style="--wave:4"><span class="avatar av1">DA</span><b>Portuguese for surfing</b><i class="mono">78 cards</i></div>
       </div>
     </div>
   </section>
@@ -210,31 +240,31 @@
   <!-- 06 ČÍSLA -->
   <section class="sec sec-stats bg-ink cut-down" id="stats" data-live>
     <div class="wrap">
-      <span class="chapnum mono">06 / SKÓRE</span>
-      <h2 class="big wt"><span class="wm"><span class="w">Skóre,</span></span> <span class="wm"><span class="w">které</span></span> <span class="wm"><span class="w">roste.</span></span></h2>
+      <span class="chapnum mono" data-i18n="chap06">06 / SCORE</span>
+      <h2 class="big wt" data-i18n-wt="statsTitle">A score that keeps growing.</h2>
       <div class="stats-grid">
-        <div class="stat"><span class="stat-num"><span class="stat-val" data-target="13">0</span>+</span><span class="stat-label mono">JAZYKŮ</span></div>
-        <div class="stat"><span class="stat-num"><span class="stat-val" data-target="3">0</span></span><span class="stat-label mono">HROMÁDKY</span></div>
-        <div class="stat"><span class="stat-num"><span class="stat-val" data-target="1">0</span></span><span class="stat-label mono">KLEPNUTÍ NA KARTIČKU</span></div>
-        <div class="stat"><span class="stat-num stat-inf">∞</span><span class="stat-label mono">KOMUNITNÍCH BALÍČKŮ</span></div>
+        <div class="stat"><span class="stat-num"><span class="stat-val" data-target="13">0</span>+</span><span class="stat-label mono" data-i18n="statLangs">LANGUAGES</span></div>
+        <div class="stat"><span class="stat-num"><span class="stat-val" data-target="3">0</span></span><span class="stat-label mono" data-i18n="statPiles">PILES</span></div>
+        <div class="stat"><span class="stat-num"><span class="stat-val" data-target="1">0</span></span><span class="stat-label mono" data-i18n="statTap">TAP PER CARD</span></div>
+        <div class="stat"><span class="stat-num stat-inf">∞</span><span class="stat-label mono" data-i18n="statDecks">COMMUNITY DECKS</span></div>
       </div>
-      <p class="stats-line">13+ jazyků. 3 hromádky. 1 apka.</p>
+      <p class="stats-line" data-i18n="statsLine">13+ languages. 3 piles. 1 app.</p>
       <div class="stamps">
-        <button class="stamp-btn" type="button" data-lang="en-US" data-greet="hello" aria-label="Angličtina — přehrát pozdrav">[EN]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="es-ES" data-greet="hola" aria-label="Španělština — přehrát pozdrav">[ES]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="de-DE" data-greet="hallo" aria-label="Němčina — přehrát pozdrav">[DE]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="it-IT" data-greet="ciao" aria-label="Italština — přehrát pozdrav">[IT]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="cs-CZ" data-greet="ahoj" aria-label="Čeština — přehrát pozdrav">[CS]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="ko-KR" data-greet="안녕하세요" aria-label="Korejština — přehrát pozdrav">[KO]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="pt-PT" data-greet="olá" aria-label="Portugalština — přehrát pozdrav">[PT]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="sk-SK" data-greet="ahoj" aria-label="Slovenština — přehrát pozdrav">[SK]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="fr-FR" data-greet="salut" aria-label="Francouzština — přehrát pozdrav">[FR]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="ja-JP" data-greet="こんにちは" aria-label="Japonština — přehrát pozdrav">[JA]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="ru-RU" data-greet="привет" aria-label="Ruština — přehrát pozdrav">[RU]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="tr-TR" data-greet="merhaba" aria-label="Turečtina — přehrát pozdrav">[TR]<span class="spk" aria-hidden="true">♪</span></button>
-        <button class="stamp-btn" type="button" data-lang="uk-UA" data-greet="привіт" aria-label="Ukrajinština — přehrát pozdrav">[UA]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="en-US" data-greet="hello" data-i18n-attr="aria-label:stampEn">[EN]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="es-ES" data-greet="hola" data-i18n-attr="aria-label:stampEs">[ES]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="de-DE" data-greet="hallo" data-i18n-attr="aria-label:stampDe">[DE]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="it-IT" data-greet="ciao" data-i18n-attr="aria-label:stampIt">[IT]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="cs-CZ" data-greet="ahoj" data-i18n-attr="aria-label:stampCs">[CS]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="ko-KR" data-greet="안녕하세요" data-i18n-attr="aria-label:stampKo">[KO]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="pt-PT" data-greet="olá" data-i18n-attr="aria-label:stampPt">[PT]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="sk-SK" data-greet="ahoj" data-i18n-attr="aria-label:stampSk">[SK]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="fr-FR" data-greet="salut" data-i18n-attr="aria-label:stampFr">[FR]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="ja-JP" data-greet="こんにちは" data-i18n-attr="aria-label:stampJa">[JA]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="ru-RU" data-greet="привет" data-i18n-attr="aria-label:stampRu">[RU]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="tr-TR" data-greet="merhaba" data-i18n-attr="aria-label:stampTr">[TR]<span class="spk" aria-hidden="true">♪</span></button>
+        <button class="stamp-btn" type="button" data-lang="uk-UA" data-greet="привіт" data-i18n-attr="aria-label:stampUk">[UA]<span class="spk" aria-hidden="true">♪</span></button>
       </div>
-      <p class="streak"><svg class="flame" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.2 4.2-3.6 6-3.6 10.4a4.6 4.6 0 0 0 9.2 0C17.6 8.6 13.4 7.4 12 2zm.1 16.6a2.3 2.3 0 0 1-2.3-2.3c0-1.7 1.5-2.5 2.2-4 .8 1.5 2.4 2.3 2.4 4a2.3 2.3 0 0 1-2.3 2.3z"/></svg><span class="mono">247 DNÍ V ŘADĚ</span></p>
+      <p class="streak"><svg class="flame" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.2 4.2-3.6 6-3.6 10.4a4.6 4.6 0 0 0 9.2 0C17.6 8.6 13.4 7.4 12 2zm.1 16.6a2.3 2.3 0 0 1-2.3-2.3c0-1.7 1.5-2.5 2.2-4 .8 1.5 2.4 2.3 2.4 4a2.3 2.3 0 0 1-2.3 2.3z"/></svg><span class="mono" data-i18n="streak">247 DAY STREAK</span></p>
     </div>
   </section>
 
@@ -242,29 +272,29 @@
   <section class="sec sec-final bg-lime cut-up" id="final">
     <div class="flip-scene">
       <div class="satellites" aria-hidden="true">
-        <span class="sat sat1 cardlet"><b>gracias</b><i>díky</i></span>
-        <span class="sat sat2 cardlet"><b>bridge</b><i>most</i></span>
-        <span class="sat sat3 cardlet"><b>chat</b><i>kočka</i></span>
-        <span class="sat sat4 cardlet"><b>Wort</b><i>slovo</i></span>
+        <span class="sat sat1 cardlet"><b>gracias</b><i data-i18n="satGracias">thanks</i></span>
+        <span class="sat sat2 cardlet"><b>bridge</b><i data-i18n="satBridge">bridge</i></span>
+        <span class="sat sat3 cardlet"><b>chat</b><i data-i18n="satChat">cat</i></span>
+        <span class="sat sat4 cardlet"><b>Wort</b><i data-i18n="satWort">word</i></span>
       </div>
       <div class="flip-card" id="flipCard">
         <div class="flip-face flip-front">
-          <p class="flip-title">Tvoje první slovo čeká.</p>
-          <p class="mono flip-hint">↓ scrolluj a otoč kartičku ↓</p>
+          <p class="flip-title" data-i18n="flipTitle">Your first word is waiting.</p>
+          <p class="mono flip-hint" data-i18n="flipHint">↓ scroll and flip the card ↓</p>
         </div>
         <div class="flip-face flip-back">
           <span class="magnet" id="magnetWrap">
-            <a class="btn btn-final" id="finalCta" href="https://app.duocards.xyz/" rel="noopener">Přihlásit se →</a>
+            <a class="btn btn-final" id="finalCta" href="https://app.duocards.xyz/" rel="noopener" data-i18n="loginArrow">Sign in →</a>
           </span>
-          <p class="mono flip-note">Zdarma. Bez kreditky. Za minutu šviháš.</p>
+          <p class="mono flip-note" data-i18n="flipNote">Free. No credit card. Swiping in a minute.</p>
         </div>
       </div>
     </div>
+    <footer class="colophon mono">DuoCards — flashcards that know the rhythm of your brain. © 2026 · <a href="https://app.duocards.xyz/" rel="noopener">app.duocards.xyz</a></footer>
   </section>
 
-  <footer class="colophon mono">DuoCards — kartičky, které znají rytmus tvého mozku. © 2026 · <a href="https://app.duocards.xyz/" rel="noopener">app.duocards.xyz</a></footer>
-
 </div>
-<script src="script.js?v=4"></script>
+<script src="i18n.js?v=2"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>

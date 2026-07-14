@@ -11,6 +11,31 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE = matchMedia('(pointer: fine)').matches;
 const APP_URL = 'https://app.duocards.xyz/';
 
+/* Scroll bez # v URL */
+(() => {
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  document.querySelectorAll('[data-scroll-to]').forEach(el => {
+    el.addEventListener('click', () => {
+      document.getElementById(el.dataset.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+})();
+
+/* Safari theme-color = barva hero sekce */
+(() => {
+  let meta = document.querySelector('meta[name="theme-color"]:not([media])');
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    document.head.appendChild(meta);
+  }
+  const sync = () => {
+    meta.content = getComputedStyle(document.documentElement).getPropertyValue('--chrome-bg').trim();
+  };
+  sync();
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', sync);
+})();
+
 const SPEAKER_SVG = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/><path d="M16 8a5 5 0 0 1 0 8" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/></svg>';
 
 /* ---------- jediná globální rAF smyčka ---------- */
@@ -60,7 +85,7 @@ $$('.wt').forEach(t => $$('.wm', t).forEach((wm, i) => $('.w', wm).style.setProp
   const tag = $('#slotTag');
   if (!track) return;
   const words = $$('.slot-word', track);
-  const tags = words.map(w => w.dataset.tag);
+  const getTags = () => words.map(w => w.dataset.tag);
   let i = 0;
   let tagTimer = 0;
 
@@ -73,7 +98,7 @@ $$('.wt').forEach(t => $$('.wm', t).forEach((wm, i) => $('.w', wm).style.setProp
     tag.classList.remove('show');
     clearTimeout(tagTimer);
     tagTimer = setTimeout(() => {
-      tag.textContent = tags[idx % words.length];
+      tag.textContent = getTags()[idx % words.length];
       tag.classList.add('show');
     }, 1200);
   };
@@ -206,15 +231,18 @@ const burst = (x, y, count) => {
     done: $('[data-pile="done"]'),
   };
   const counts = { no: 0, yes: 0, done: 0 };
+  const L = () => window.DuoI18n.T[window.DuoI18n.getLang()];
+  const cardBack = c => (window.DuoI18n.getLang() === 'cs' ? c.backCs : c.backEn);
+  const backCode = () => (window.DuoI18n.getLang() === 'cs' ? 'CS' : 'EN');
   const DATA = [
-    { front: 'hola', code: 'ES', lang: 'es-ES', back: 'ahoj', ex: '¡Hola! ¿Qué tal?' },
-    { front: 'Brücke', code: 'DE', lang: 'de-DE', back: 'most', ex: 'Die Brücke über den Fluss.' },
-    { front: '猫', code: 'JA', lang: 'ja-JP', back: 'kočka', ex: '猫がかわいいです。' },
-    { front: 'obrigado', code: 'PT', lang: 'pt-PT', back: 'děkuji', ex: 'Muito obrigado!' },
-    { front: 'swallow', code: 'EN', lang: 'en-US', back: 'vlaštovka', ex: 'A swallow flew over us.' },
-    { front: 'excusa', code: 'ES', lang: 'es-ES', back: 'výmluva', ex: 'No busques excusas.' },
-    { front: 'breakthrough', code: 'EN', lang: 'en-US', back: 'průlom', ex: 'It was a real breakthrough.' },
-    { front: 'merci', code: 'FR', lang: 'fr-FR', back: 'děkuji', ex: 'Merci beaucoup !' },
+    { front: 'hola', code: 'ES', lang: 'es-ES', backEn: 'hello', backCs: 'ahoj', ex: '¡Hola! ¿Qué tal?' },
+    { front: 'Brücke', code: 'DE', lang: 'de-DE', backEn: 'bridge', backCs: 'most', ex: 'Die Brücke über den Fluss.' },
+    { front: '猫', code: 'JA', lang: 'ja-JP', backEn: 'cat', backCs: 'kočka', ex: '猫がかわいいです。' },
+    { front: 'obrigado', code: 'PT', lang: 'pt-PT', backEn: 'thank you', backCs: 'děkuji', ex: 'Muito obrigado!' },
+    { front: 'swallow', code: 'EN', lang: 'en-US', backEn: 'swallow (bird)', backCs: 'vlaštovka', ex: 'A swallow flew over us.' },
+    { front: 'excusa', code: 'ES', lang: 'es-ES', backEn: 'excuse', backCs: 'výmluva', ex: 'No busques excusas.' },
+    { front: 'breakthrough', code: 'EN', lang: 'en-US', backEn: 'breakthrough', backCs: 'průlom', ex: 'It was a real breakthrough.' },
+    { front: 'merci', code: 'FR', lang: 'fr-FR', backEn: 'thank you', backCs: 'děkuji', ex: 'Merci beaucoup !' },
   ];
   const TOTAL = DATA.length;
   const queue = DATA.map(c => ({ ...c, knows: 0 }));
@@ -226,7 +254,48 @@ const burst = (x, y, count) => {
 
   const topCard = () => queue.length ? els.get(queue[0]) : null;
 
-  const plural = n => n === 1 ? '1 karta' : (n >= 2 && n <= 4 ? `${n} karty` : `${n} karet`);
+  const plural = n => L().cardPlural(n);
+
+  const cardHtml = c => {
+    const labels = L();
+    return `
+      <div class="dcard-inner">
+        <div class="dface dfront">
+          <span class="dcode">[${c.code}]</span>
+          <span class="dword" lang="${c.lang.split('-')[0]}">${c.front}</span>
+          <span class="dhint">${labels.cardHint}</span>
+          ${TTS ? `<button class="dtts" type="button" aria-label="${labels.speakAria}">${SPEAKER_SVG}</button>` : ''}
+        </div>
+        <div class="dface dback">
+          <span class="dcode">[${backCode()}]</span>
+          <span class="dword">${cardBack(c)}</span>
+          <span class="dex" lang="${c.lang.split('-')[0]}">${c.ex}</span>
+          ${TTS ? `<button class="dtts" type="button" aria-label="${labels.speakAria}">${SPEAKER_SVG}</button>` : ''}
+        </div>
+      </div>
+      <span class="stamp stamp-yes">${labels.stampYes}</span>
+      <span class="stamp stamp-no">${labels.stampNo}</span>
+      <span class="stamp stamp-up">${labels.stampUp}</span>`;
+  };
+
+  const refreshCards = () => {
+    els.forEach((el, c) => {
+      el.setAttribute('aria-label', L().cardAria(c.front));
+      const hint = $('.dhint', el);
+      if (hint) hint.textContent = L().cardHint;
+      const code = $('.dface.dback .dcode', el);
+      if (code) code.textContent = `[${backCode()}]`;
+      const back = $('.dface.dback .dword', el);
+      if (back) back.textContent = cardBack(c);
+      const sy = $('.stamp-yes', el);
+      const sn = $('.stamp-no', el);
+      const su = $('.stamp-up', el);
+      if (sy) sy.textContent = L().stampYes;
+      if (sn) sn.textContent = L().stampNo;
+      if (su) su.textContent = L().stampUp;
+      $$('.dtts', el).forEach(b => b.setAttribute('aria-label', L().speakAria));
+    });
+  };
 
   /* obtisková stopa */
   const GHOSTS = FINE ? 3 : 2;
@@ -318,26 +387,8 @@ const burst = (x, y, count) => {
     el.className = 'dcard';
     el.tabIndex = 0;
     el.setAttribute('role', 'group');
-    el.setAttribute('aria-label', `Kartička ${c.front} — Enter otočí, šipky zařadí do hromádky`);
-    const langShort = c.lang.split('-')[0];
-    el.innerHTML = `
-      <div class="dcard-inner">
-        <div class="dface dfront">
-          <span class="dcode">[${c.code}]</span>
-          <span class="dword" lang="${langShort}">${c.front}</span>
-          <span class="dhint">klepni = otočit</span>
-          ${TTS ? `<button class="dtts" type="button" aria-label="Přehrát výslovnost">${SPEAKER_SVG}</button>` : ''}
-        </div>
-        <div class="dface dback">
-          <span class="dcode">[CS]</span>
-          <span class="dword">${c.back}</span>
-          <span class="dex" lang="${langShort}">${c.ex}</span>
-          ${TTS ? `<button class="dtts" type="button" aria-label="Přehrát výslovnost">${SPEAKER_SVG}</button>` : ''}
-        </div>
-      </div>
-      <span class="stamp stamp-yes">VÍM</span>
-      <span class="stamp stamp-no">NEVÍM</span>
-      <span class="stamp stamp-up">NAUČENO</span>`;
+    el.setAttribute('aria-label', L().cardAria(c.front));
+    el.innerHTML = cardHtml(c);
     $$('.dtts', el).forEach(b => b.addEventListener('click', ev => {
       ev.stopPropagation();
       speak(c.front, c.lang);
@@ -388,12 +439,12 @@ const burst = (x, y, count) => {
     els.forEach(el => el.remove());
     deckEl.innerHTML = `
       <div class="result-card cardlet">
-        <p class="result-big">Šlo ti to.<br>Umíš ${counts.done} z ${TOTAL}.</p>
-        <p class="result-note mono">Představ si to s celým jazykem.</p>
-        <a class="btn btn-dark" href="${APP_URL}" rel="noopener">Chci dalších tisíc →</a>
+        <p class="result-big">${L().demoResult(counts.done, TOTAL)}</p>
+        <p class="result-note mono">${L().demoResultNote}</p>
+        <a class="btn btn-dark" href="${APP_URL}" rel="noopener">${L().demoResultCta}</a>
       </div>`;
     $('#deckActions').style.display = 'none';
-    liveEl.textContent = `Demo dokončeno. Naučeno ${counts.done} z ${TOTAL} karet.`;
+    liveEl.textContent = L().demoDoneLive(counts.done, TOTAL);
   };
 
   const resolve = (kind, dx = 0, dy = 0) => {
@@ -419,22 +470,22 @@ const burst = (x, y, count) => {
       if (kind === 'no') {
         queue.push(c);
         counts.no++;
-        msg = `${c.front} → hromádka Nevím, vrací se na dno balíčku.`;
+        msg = L().msgNo(c.front);
       } else if (kind === 'yes') {
         c.knows++;
         if (c.knows >= 3) {
           counts.done++;
           pileKind = 'done';
-          msg = `${c.front} — potřetí Vím, přesouvá se do Naučeno.`;
+          msg = L().msgYesDone(c.front);
           pileConfetti(piles.done);
         } else {
           queue.splice(Math.min(3, queue.length), 0, c);
           counts.yes++;
-          msg = `${c.front} → hromádka Vím.`;
+          msg = L().msgYes(c.front);
         }
       } else {
         counts.done++;
-        msg = `${c.front} → hromádka Naučeno.`;
+        msg = L().msgDone(c.front);
         pileConfetti(piles.done);
       }
       updatePile(pileKind);
@@ -444,7 +495,7 @@ const burst = (x, y, count) => {
         el.style.transform = '';
         clearDragVars(el);
       }
-      liveEl.textContent = `${msg} V balíčku: ${plural(queue.length)}.`;
+      liveEl.textContent = L().msgQueue(msg, queue.length);
       resolving = false;
       if (!queue.length || interactions >= 20) { finish(); return; }
       render();
@@ -458,6 +509,11 @@ const burst = (x, y, count) => {
   $('#btnFlip').addEventListener('click', () => toggleFlip(topCard()));
 
   render();
+
+  window.DuoI18n.onLangChange(() => {
+    if (finished) finish();
+    else refreshCards();
+  });
 })();
 
 /* ---------- 04.3 slovo letí z titulků do balíčku ---------- */
