@@ -3,18 +3,19 @@
 'use strict';
 
 const STORAGE_KEY = 'duocards-lang';
-const LANG_COUNT = 29;
+const LANG_COUNT = 30;
+const LANG_LABEL = '30+';
 const refreshers = [];
 
 const T = {
   en: {
     metaTitle: 'DuoCards — AI Flashcards to Learn Any Language',
-    metaDesc: `Learn vocabulary in 3 seconds with AI flashcards and spaced repetition. ${LANG_COUNT} languages, swipe-to-study decks, free web app. Start at app.duocards.xyz.`,
+    metaDesc: `Learn vocabulary in 3 seconds with AI flashcards and spaced repetition. ${LANG_LABEL} languages, swipe-to-study decks, free web app. Start at app.duocards.xyz.`,
     metaKeywords: 'language learning, flashcards, spaced repetition, vocabulary app, learn Spanish, learn German, AI translator, language flashcards, memorize words, DuoCards',
     ogTitle: 'DuoCards — Learn a Word in 3 Seconds',
-    ogDesc: `AI flashcards that know when you start forgetting. Swipe, flip, and master ${LANG_COUNT} languages — free on the web.`,
+    ogDesc: `AI flashcards that know when you start forgetting. Swipe, flip, and master ${LANG_LABEL} languages — free on the web.`,
     ogImageAlt: 'DuoCards — AI flashcards for language learning',
-    jsonLdDesc: `DuoCards is a free web app for learning languages with AI flashcards, spaced repetition, and swipe-based study decks in ${LANG_COUNT} languages.`,
+    jsonLdDesc: `DuoCards is a free web app for learning languages with AI flashcards, spaced repetition, and swipe-based study decks in ${LANG_LABEL} languages.`,
     brandAria: 'DuoCards — top of page',
     langSwitch: 'Switch to Czech',
     langLabel: 'CS',
@@ -31,7 +32,7 @@ const T = {
     straySaudade: '[PT] bittersweet longing',
     flierSerendipity: '[EN] happy accident',
     flierBonjour: 'hello',
-    flierDanke: 'thanks',
+    flierNihao: 'hello',
     flierCiao: 'hey',
     chap01: '01 / TRY IT',
     demoTitle: 'Swipe. Flip. Learn.',
@@ -51,7 +52,7 @@ const T = {
     btnDone: '↑ Learned',
     chap02: '02 / AI TRANSLATOR',
     aiTitle: 'One tap. Done card.',
-    aiBody: `No typing. Tap a word, AI translates it, pronounces it, and adds it to your deck. Works in ${LANG_COUNT} languages.`,
+    aiBody: `No typing. Tap a word, AI translates it, pronounces it, and adds it to your deck. Works in ${LANG_LABEL} languages.`,
     aiTap: '↳ tap',
     aiTrans: 'swallow',
     chap03: '03 / SPACED REPETITION',
@@ -84,7 +85,7 @@ const T = {
     statPiles: 'PILES',
     statTap: 'TAP PER CARD',
     statDecks: 'COMMUNITY DECKS',
-    statsLine: `${LANG_COUNT} languages. 3 piles. 1 app.`,
+    statsLine: `${LANG_LABEL} languages. 3 piles. 1 app.`,
     streak: '247 DAY STREAK',
     stampEn: 'English — play greeting',
     stampEs: 'Spanish — play greeting',
@@ -126,12 +127,12 @@ const T = {
   },
   cs: {
     metaTitle: 'DuoCards — Nauč se jazyky s AI kartičkami',
-    metaDesc: `Nauč se slovíčka za 3 vteřiny. AI kartičky se spaced repetition v ${LANG_COUNT} jazycích. Švihej, otáčej, pamatuj — zdarma na app.duocards.xyz.`,
+    metaDesc: `Nauč se slovíčka za 3 vteřiny. AI kartičky se spaced repetition ve ${LANG_LABEL} jazycích. Švihej, otáčej, pamatuj — zdarma na app.duocards.xyz.`,
     metaKeywords: 'učení jazyků, kartičky, spaced repetition, slovíčka, naučit se španělsky, AI překladač, flashcards, DuoCards, výuka jazyků',
     ogTitle: 'DuoCards — Nauč se slovo za 3 vteřiny',
-    ogDesc: `AI kartičky, které znají rytmus tvého mozku. Švihej, otáčej a zvládni ${LANG_COUNT} jazyků — zdarma na webu.`,
+    ogDesc: `AI kartičky, které znají rytmus tvého mozku. Švihej, otáčej a zvládni ${LANG_LABEL} jazyků — zdarma na webu.`,
     ogImageAlt: 'DuoCards — AI kartičky pro učení jazyků',
-    jsonLdDesc: `DuoCards je bezplatná webová aplikace pro učení jazyků s AI kartičkami, spaced repetition a výukou v ${LANG_COUNT} jazycích.`,
+    jsonLdDesc: `DuoCards je bezplatná webová aplikace pro učení jazyků s AI kartičkami, spaced repetition a výukou ve ${LANG_LABEL} jazycích.`,
     brandAria: 'DuoCards — začátek stránky',
     langSwitch: 'Přepnout do angličtiny',
     langLabel: 'EN',
@@ -148,7 +149,7 @@ const T = {
     straySaudade: '[PT] sladkobolný stesk',
     flierSerendipity: '[EN] šťastná náhoda',
     flierBonjour: 'ahoj',
-    flierDanke: 'díky',
+    flierNihao: 'ahoj',
     flierCiao: 'čau',
     chap01: '01 / VYZKOUŠEJ',
     demoTitle: 'Švihni. Otoč. Nauč se.',
@@ -168,7 +169,7 @@ const T = {
     btnDone: '↑ Naučeno',
     chap02: '02 / AI PŘEKLADAČ',
     aiTitle: 'Jedno klepnutí. Hotová kartička.',
-    aiBody: `Žádné vypisování. Klepneš na slovo, AI ho přeloží, vysloví a zařadí do balíčku. Funguje v ${LANG_COUNT} jazycích.`,
+    aiBody: `Žádné vypisování. Klepneš na slovo, AI ho přeloží, vysloví a zařadí do balíčku. Funguje ve ${LANG_LABEL} jazycích.`,
     aiTap: '↳ klepnutí',
     aiTrans: 'vlaštovka',
     chap03: '03 / SPACED REPETITION',
@@ -201,7 +202,7 @@ const T = {
     statPiles: 'HROMÁDKY',
     statTap: 'KLEPNUTÍ NA KARTIČKU',
     statDecks: 'KOMUNITNÍCH BALÍČKŮ',
-    statsLine: `${LANG_COUNT} jazyků. 3 hromádky. 1 apka.`,
+    statsLine: `${LANG_LABEL} jazyků. 3 hromádky. 1 apka.`,
     streak: '247 DNÍ V ŘADĚ',
     stampEn: 'Angličtina — přehrát pozdrav',
     stampEs: 'Španělština — přehrát pozdrav',
@@ -336,7 +337,7 @@ const applyLang = () => {
         description: L.jsonLdDesc,
         inLanguage: ['en', 'cs'],
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-        featureList: `AI flashcards, spaced repetition, ${LANG_COUNT} languages, swipe learning, AI translator`,
+        featureList: `AI flashcards, spaced repetition, ${LANG_LABEL} languages, swipe learning, AI translator`,
       },
     ],
   };
