@@ -39,6 +39,8 @@
   --grad: linear-gradient(135deg, var(--grad-from), var(--grad-to));
   --chrome-bg: var(--grad-from);
   --hero-bg: var(--grad);
+  --nav-glass: rgba(238, 242, 255, 0.72);
+  --nav-glass-border: rgba(79, 70, 229, 0.08);
   --grad-dark-sec: linear-gradient(135deg, #12192b, #0a0f1e);
   --ai-grad: linear-gradient(90deg, #7c3aed, #4f46e5);
   --ai-surface: linear-gradient(135deg, #f5f3ff, #eef2ff);
@@ -77,6 +79,8 @@
     --grad: linear-gradient(135deg, var(--grad-from), var(--grad-to));
     --chrome-bg: var(--grad-to);
     --hero-bg: var(--grad-to);
+    --nav-glass: rgba(29, 39, 57, 0.72);
+    --nav-glass-border: rgba(129, 140, 248, 0.1);
     --ai-surface: linear-gradient(135deg, rgba(76, 29, 149, .2), rgba(49, 46, 129, .2));
     --brand-grad: linear-gradient(90deg, #818cf8, #a78bfa);
     --em-text: #34d399;
@@ -194,6 +198,10 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   padding: 14px clamp(16px, 4vw, 40px);
   z-index: 50;
   pointer-events: none;
+  background: var(--nav-glass);
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  border-bottom: 1px solid var(--nav-glass-border);
 }
 .nav > * { pointer-events: auto; }
 .nav-actions {
