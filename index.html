@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DuoCards — AI Flashcards to Learn Any Language</title>
-<meta name="description" id="meta-desc" content="Learn vocabulary in 3 seconds with AI flashcards and spaced repetition. 30+ languages, swipe-to-study decks, free web app. Start at app.duocards.xyz.">
+<meta name="description" id="meta-desc" content="Learn vocabulary in 3 seconds with AI flashcards and spaced repetition. 28+ languages, swipe-to-study decks, free web app. Start at app.duocards.xyz.">
 <meta name="keywords" id="meta-keywords" content="language learning, flashcards, spaced repetition, vocabulary app, learn Spanish, learn German, AI translator, language flashcards, memorize words, DuoCards">
 <meta name="author" content="DuoCards">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="DuoCards">
 <meta property="og:url" id="og-url" content="https://duocards.xyz/">
 <meta property="og:title" id="og-title" content="DuoCards — Learn a Word in 3 Seconds">
-<meta property="og:description" id="og-desc" content="AI flashcards that know when you start forgetting. Swipe, flip, and master 30+ languages — free on the web.">
+<meta property="og:description" id="og-desc" content="AI flashcards that know when you start forgetting. Swipe, flip, and master 28+ languages — free on the web.">
 <meta property="og:image" id="og-image" content="https://duocards.xyz/og-image-whatsapp.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
@@ -27,7 +27,7 @@
 <meta property="og:locale:alternate" content="cs_CZ">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" id="tw-title" content="DuoCards — Learn a Word in 3 Seconds">
-<meta name="twitter:description" id="tw-desc" content="AI flashcards that know when you start forgetting. Swipe, flip, and master 30+ languages — free on the web.">
+<meta name="twitter:description" id="tw-desc" content="AI flashcards that know when you start forgetting. Swipe, flip, and master 28+ languages — free on the web.">
 <meta name="twitter:image" id="tw-image" content="https://duocards.xyz/og-image-whatsapp.png">
 <meta name="application-name" content="DuoCards">
 <meta name="apple-mobile-web-app-title" content="DuoCards">
@@ -39,8 +39,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..800&family=Geist+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20">
-<script type="application/ld+json" id="jsonld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://duocards.xyz/#website","name":"DuoCards","url":"https://duocards.xyz/","description":"DuoCards is a free web app for learning languages with AI flashcards, spaced repetition, and swipe-based study decks in 13+ languages.","inLanguage":"en-US","publisher":{"@id":"https://duocards.xyz/#organization"}},{"@type":"Organization","@id":"https://duocards.xyz/#organization","name":"DuoCards","url":"https://duocards.xyz/","logo":{"@type":"ImageObject","url":"https://duocards.xyz/og-image.svg"}},{"@type":"WebApplication","@id":"https://duocards.xyz/#app","name":"DuoCards","url":"https://app.duocards.xyz/","applicationCategory":"EducationalApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"DuoCards is a free web app for learning languages with AI flashcards, spaced repetition, and swipe-based study decks in 13+ languages.","inLanguage":["en","cs"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"AI flashcards, spaced repetition, 13+ languages, swipe learning, AI translator"}]}</script>
+<link rel="stylesheet" href="style.css?v=21">
+<script type="application/ld+json" id="jsonld">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://duocards.xyz/#website","name":"DuoCards","url":"https://duocards.xyz/","description":"DuoCards is a free web app for learning languages with AI flashcards, spaced repetition, and swipe-based study decks in 28+ languages.","inLanguage":"en-US","publisher":{"@id":"https://duocards.xyz/#organization"}},{"@type":"Organization","@id":"https://duocards.xyz/#organization","name":"DuoCards","url":"https://duocards.xyz/","logo":{"@type":"ImageObject","url":"https://duocards.xyz/og-image.svg"}},{"@type":"WebApplication","@id":"https://duocards.xyz/#app","name":"DuoCards","url":"https://app.duocards.xyz/","applicationCategory":"EducationalApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"DuoCards is a free web app for learning languages with AI flashcards, spaced repetition, and swipe-based study decks in 28+ languages.","inLanguage":["ar","ca","zh","cs","da","nl","en","fi","fr","de","el","he","hi","hu","id","it","ja","ko","no","pl","pt","ro","ru","es","sv","th","tr","uk","vi"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"AI flashcards, spaced repetition, 28+ languages, swipe learning, AI translator"}]}</script>
 </head>
 <body id="top">
 <div class="page">
@@ -58,7 +58,19 @@
       <span class="brand-name">DuoCards</span>
     </a>
     <div class="nav-actions">
-      <button class="lang-toggle mono" id="langToggle" type="button" aria-label="Switch to Czech">CS</button>
+      <label class="sr-only" for="langSelect">Language</label>
+      <select class="lang-select mono" id="langSelect" aria-label="Language">
+        <option value="ar">العربية</option><option value="ca">Català</option><option value="zh">中文（普通话）</option>
+        <option value="cs">Čeština</option><option value="da">Dansk</option><option value="nl">Nederlands</option>
+        <option value="en">English</option><option value="fi">Suomi</option><option value="fr">Français</option>
+        <option value="de">Deutsch</option><option value="el">Ελληνικά</option><option value="he">עברית</option>
+        <option value="hi">हिन्दी</option><option value="hu">Magyar</option><option value="id">Bahasa Indonesia</option>
+        <option value="it">Italiano</option><option value="ja">日本語</option><option value="ko">한국어</option>
+        <option value="no">Norsk</option><option value="pl">Polski</option><option value="pt">Português</option>
+        <option value="ro">Română</option><option value="ru">Русский</option><option value="es">Español</option>
+        <option value="sv">Svenska</option><option value="th">ไทย</option><option value="tr">Türkçe</option>
+        <option value="uk">Українська</option><option value="vi">Tiếng Việt</option>
+      </select>
       <a class="btn btn-nav" href="https://app.duocards.xyz/" rel="noopener" data-i18n="login">Sign in</a>
     </div>
   </nav>
@@ -153,7 +165,7 @@
       <div class="col-copy">
         <span class="chapnum mono" data-i18n="chap02">02 / AI TRANSLATOR</span>
         <h2 class="big wt" data-i18n-wt="aiTitle">One tap. Done card.</h2>
-        <p data-i18n="aiBody">No typing. Tap a word, AI translates it, pronounces it, and adds it to your deck. Works in 30+ languages.</p>
+        <p data-i18n="aiBody">No typing. Tap a word, AI translates it, pronounces it, and adds it to your deck. Works in 28+ languages.</p>
       </div>
       <div class="col-vis">
         <div class="ai-mock">
@@ -244,7 +256,7 @@
       <span class="chapnum mono" data-i18n="chap06">06 / SCORE</span>
       <h2 class="big wt" data-i18n-wt="statsTitle">A score that keeps growing.</h2>
       <div class="stats-grid">
-        <div class="stat"><span class="stat-num"><span class="stat-val" data-target="30">0</span>+</span><span class="stat-label mono" data-i18n="statLangs">LANGUAGES</span></div>
+        <div class="stat"><span class="stat-num"><span class="stat-val" data-target="28">0</span>+</span><span class="stat-label mono" data-i18n="statLangs">LANGUAGES</span></div>
         <div class="stat"><span class="stat-num"><span class="stat-val" data-target="3">0</span></span><span class="stat-label mono" data-i18n="statPiles">PILES</span></div>
         <div class="stat"><span class="stat-num"><span class="stat-val" data-target="1">0</span></span><span class="stat-label mono" data-i18n="statTap">TAP PER CARD</span></div>
         <div class="stat stat-decks">
@@ -296,7 +308,8 @@
   </section>
 
 </div>
-<script src="i18n.js?v=6"></script>
+<script src="landing-locales.js?v=1"></script>
+<script src="i18n.js?v=7"></script>
 <script src="script.js?v=10"></script>
 </body>
 </html>

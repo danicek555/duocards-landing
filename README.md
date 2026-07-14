@@ -9,7 +9,7 @@ Responzivní jednostránková prezentace aplikace [DuoCards](https://duocards.xy
 - Interaktivní balíček s otočením a gesty „vím“, „nevím“ a „naučeno“
 - Mobilní animace, zvuková a vibrační odezva při třídění kartiček
 - Ukázku AI překladače, opakování v intervalech, Chrome rozšíření a komunitních balíčků
-- Přepínání mezi češtinou a angličtinou
+- Přepínání mezi 29 jazyky včetně arabštiny, čínštiny, japonštiny a hebrejštiny
 - Responzivní rozložení pro mobil, tablet i desktop
 - SEO metadata a samostatný obrázek pro náhled při sdílení
 
@@ -34,7 +34,8 @@ vercel deploy --prod
 ## Technika
 
 - Vanilla HTML/CSS/JS, bez frameworků a bez buildu
-- Překlady v `i18n.js`, zvolený jazyk se ukládá do `localStorage`
+- Základní lokalizace v `i18n.js`, generované jazykové balíčky v `landing-locales.js`
+- Zvolený jazyk se ukládá do `localStorage`; arabština a hebrejština používají RTL rozložení
 - Scroll animace přes `IntersectionObserver`, 3D CSS transformy, `requestAnimationFrame`
 - Interaktivní demo ovladatelné dotykem, myší i klávesnicí
 - Výslovnost přes `SpeechSynthesis`, krátké UI tóny přes Web Audio API

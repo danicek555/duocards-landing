@@ -1,10 +1,13 @@
-/* DuoCards landing — EN / CS */
+/* DuoCards landing — 29 UI languages */
 (() => {
 'use strict';
 
 const STORAGE_KEY = 'duocards-lang';
-const LANG_COUNT = 30;
-const LANG_LABEL = '30+';
+const LANG_COUNT = 28;
+const LANG_LABEL = '28+';
+const LOCALES = ['ar', 'ca', 'zh', 'cs', 'da', 'nl', 'en', 'fi', 'fr', 'de', 'el', 'he', 'hi', 'hu', 'id', 'it', 'ja', 'ko', 'no', 'pl', 'pt', 'ro', 'ru', 'es', 'sv', 'th', 'tr', 'uk', 'vi'];
+const RTL_LOCALES = new Set(['ar', 'he']);
+const LOCALE_TAGS = { ar: 'ar', ca: 'ca', zh: 'zh-CN', cs: 'cs-CZ', da: 'da-DK', nl: 'nl-NL', en: 'en-US', fi: 'fi-FI', fr: 'fr-FR', de: 'de-DE', el: 'el-GR', he: 'he-IL', hi: 'hi-IN', hu: 'hu-HU', id: 'id-ID', it: 'it-IT', ja: 'ja-JP', ko: 'ko-KR', no: 'nb-NO', pl: 'pl-PL', pt: 'pt-PT', ro: 'ro-RO', ru: 'ru-RU', es: 'es-ES', sv: 'sv-SE', th: 'th-TH', tr: 'tr-TR', uk: 'uk-UA', vi: 'vi-VN' };
 const refreshers = [];
 
 const T = {
@@ -242,11 +245,29 @@ const T = {
   },
 };
 
+Object.entries(window.DuoLandingLocales || {}).forEach(([code, pack]) => {
+  const format = (template, values) => Object.entries(values).reduce((text, [key, value]) => text.split(`{${key}}`).join(value), template);
+  T[code] = {
+    ...T.en,
+    ...pack,
+    cardAria: w => format(pack._cardAriaTpl, { w }),
+    cardPlural: n => format(pack._cardPluralTpl, { n }),
+    demoDoneLive: (done, total) => format(pack._demoDoneLiveTpl, { done, total }),
+    demoResult: (done, total) => format(pack._demoResultTpl, { done, total }),
+    msgNo: w => format(pack._msgNoTpl, { w }),
+    msgYes: w => format(pack._msgYesTpl, { w }),
+    msgYesDone: w => format(pack._msgYesDoneTpl, { w }),
+    msgDone: w => format(pack._msgDoneTpl, { w }),
+    msgQueue: (msg, n) => format(pack._msgQueueTpl, { msg, n }),
+  };
+});
+
 let lang = localStorage.getItem(STORAGE_KEY);
 const urlLang = new URLSearchParams(location.search).get('lang');
-if (urlLang === 'en' || urlLang === 'cs') lang = urlLang;
-else if (lang !== 'en' && lang !== 'cs') {
-  lang = navigator.language?.toLowerCase().startsWith('cs') ? 'cs' : 'en';
+if (LOCALES.includes(urlLang)) lang = urlLang;
+else if (!LOCALES.includes(lang)) {
+  const detected = navigator.language?.toLowerCase().split(/[-_]/)[0];
+  lang = LOCALES.includes(detected) ? detected : 'en';
 }
 
 const siteOrigin = () => {
@@ -260,7 +281,7 @@ const setMeta = (id, val, attr = 'content') => {
 };
 
 const t = key => {
-  const v = T[lang][key];
+  const v = T[lang]?.[key] ?? T.en[key];
   return typeof v === 'function' ? v : v;
 };
 
@@ -284,6 +305,7 @@ const applyLang = () => {
   const L = T[lang];
 
   document.documentElement.lang = lang;
+  document.documentElement.dir = RTL_LOCALES.has(lang) ? 'rtl' : 'ltr';
   document.title = L.metaTitle;
   setMeta('meta-desc', L.metaDesc);
   setMeta('meta-keywords', L.metaKeywords);
@@ -292,7 +314,7 @@ const applyLang = () => {
   setMeta('tw-title', L.ogTitle);
   setMeta('tw-desc', L.ogDesc);
   setMeta('og-image-alt', L.ogImageAlt);
-  setMeta('og-locale', lang === 'cs' ? 'cs_CZ' : 'en_US');
+  setMeta('og-locale', (LOCALE_TAGS[lang] || lang).replace('-', '_'));
 
   const origin = siteOrigin();
   const home = `${origin}/`;
@@ -301,6 +323,14 @@ const applyLang = () => {
   setMeta('og-url', home);
   setMeta('og-image', ogImg);
   setMeta('tw-image', ogImg);
+  LOCALES.forEach(code => {
+    if (document.querySelector(`link[data-hreflang="${code}"]`)) return;
+    const alternate = document.createElement('link');
+    alternate.rel = 'alternate';
+    alternate.hreflang = code;
+    alternate.dataset.hreflang = code;
+    document.head.appendChild(alternate);
+  });
   document.querySelectorAll('[data-hreflang]').forEach(el => {
     el.href = `${home}?lang=${el.dataset.hreflang}`;
   });
@@ -314,7 +344,7 @@ const applyLang = () => {
         name: 'DuoCards',
         url: home,
         description: L.jsonLdDesc,
-        inLanguage: lang === 'cs' ? 'cs-CZ' : 'en-US',
+        inLanguage: LOCALE_TAGS[lang] || lang,
         publisher: { '@id': `${home}#organization` },
       },
       {
@@ -333,7 +363,7 @@ const applyLang = () => {
         operatingSystem: 'Any',
         browserRequirements: 'Requires JavaScript',
         description: L.jsonLdDesc,
-        inLanguage: ['en', 'cs'],
+        inLanguage: LOCALES,
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         featureList: `AI flashcards, spaced repetition, ${LANG_LABEL} languages, swipe learning, AI translator`,
       },
@@ -402,18 +432,15 @@ const applyLang = () => {
     footer.innerHTML = `${L.footer}<a href="https://app.duocards.xyz/" rel="noopener">app.duocards.xyz</a>`;
   }
 
-  const toggle = document.getElementById('langToggle');
-  if (toggle) {
-    toggle.textContent = L.langLabel;
-    toggle.setAttribute('aria-label', L.langSwitch);
-  }
+  const select = document.getElementById('langSelect');
+  if (select) select.value = lang;
 
   document.dispatchEvent(new CustomEvent('duocards:lang', { detail: { lang } }));
   refreshers.forEach(fn => fn(lang));
 };
 
 const setLang = next => {
-  lang = next === 'cs' ? 'cs' : 'en';
+  lang = LOCALES.includes(next) ? next : 'en';
   localStorage.setItem(STORAGE_KEY, lang);
   applyLang();
 };
@@ -423,8 +450,8 @@ const getLang = () => lang;
 const onLangChange = fn => { refreshers.push(fn); };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.getElementById('langToggle');
-  if (toggle) toggle.addEventListener('click', () => setLang(lang === 'en' ? 'cs' : 'en'));
+  const select = document.getElementById('langSelect');
+  if (select) select.addEventListener('change', () => setLang(select.value));
   applyLang();
 });
 
