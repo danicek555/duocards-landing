@@ -1,12 +1,27 @@
 # DuoCards — landing page
 
-Animovaná jednostránková prezentace aplikace [DuoCards](https://www.duocards.com) — kartičky pro učení jazyků. Stránka láká, vysvětluje, co aplikace umí, a tlačítkem „Přihlásit se“ přesměruje na [duocards.xyz](https://duocards.xyz/).
+Responzivní jednostránková prezentace aplikace [DuoCards](https://duocards.xyz/) pro učení jazyků pomocí kartiček. Vysvětluje hlavní funkce aplikace, nabízí interaktivní demo a přesměruje uživatele k přihlášení do [app.duocards.xyz](https://app.duocards.xyz/).
 
-**Živě:** [duocards-landing.vercel.app](https://duocards-landing.vercel.app)
+**Živě:** [duocards.xyz](https://duocards.xyz/)
+
+## Co stránka obsahuje
+
+- Interaktivní balíček s otočením a gesty „vím“, „nevím“ a „naučeno“
+- Mobilní animace, zvuková a vibrační odezva při třídění kartiček
+- Ukázku AI překladače, opakování v intervalech, Chrome rozšíření a komunitních balíčků
+- Přepínání mezi češtinou a angličtinou
+- Responzivní rozložení pro mobil, tablet i desktop
+- SEO metadata a samostatný obrázek pro náhled při sdílení
 
 ## Spuštění lokálně
 
-Čistě statická stránka (`index.html` + `style.css` + `script.js`) — stačí otevřít `index.html` v prohlížeči. Žádný build ani server není potřeba.
+Jde o čistě statickou stránku bez buildu. Pro lokální spuštění stačí v kořeni repozitáře spustit:
+
+```bash
+python3 -m http.server 4173
+```
+
+Stránka pak poběží na [localhost:4173](http://localhost:4173/).
 
 ## Nasazení
 
@@ -19,7 +34,9 @@ vercel deploy --prod
 ## Technika
 
 - Vanilla HTML/CSS/JS, bez frameworků a bez buildu
+- Překlady v `i18n.js`, zvolený jazyk se ukládá do `localStorage`
 - Scroll animace přes `IntersectionObserver`, 3D CSS transformy, `requestAnimationFrame`
-- Interaktivní demo kartičky (otočení + swipe vím/nevím/naučeno, klávesnice i dotyk)
-- Výslovnost přes `SpeechSynthesis`, konfety, scroll-flip finální kartičky
-- Respektuje `prefers-reduced-motion`, animace pouze `transform`/`opacity`
+- Interaktivní demo ovladatelné dotykem, myší i klávesnicí
+- Výslovnost přes `SpeechSynthesis`, krátké UI tóny přes Web Audio API
+- Respektuje `prefers-reduced-motion` a bezpečně se přizpůsobuje úzkým displejům
+- Open Graph a Twitter metadata používají obrázek `og-image-whatsapp.png` (1200 × 630 px)
