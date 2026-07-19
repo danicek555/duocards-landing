@@ -3,12 +3,45 @@
 'use strict';
 
 const STORAGE_KEY = 'duocards-lang';
+const SHARED_COOKIE_KEY = 'duocards-locale';
+const PENDING_APP_COOKIE_KEY = 'duocards-locale-pending';
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 const LANG_COUNT = 28;
 const LANG_LABEL = '28+';
 const LOCALES = ['ar', 'ca', 'zh', 'cs', 'da', 'nl', 'en', 'fi', 'fr', 'de', 'el', 'he', 'hi', 'hu', 'id', 'it', 'ja', 'ko', 'no', 'pl', 'pt', 'ro', 'ru', 'es', 'sv', 'th', 'tr', 'uk', 'vi'];
 const RTL_LOCALES = new Set(['ar', 'he']);
 const LOCALE_TAGS = { ar: 'ar', ca: 'ca', zh: 'zh-CN', cs: 'cs-CZ', da: 'da-DK', nl: 'nl-NL', en: 'en-US', fi: 'fi-FI', fr: 'fr-FR', de: 'de-DE', el: 'el-GR', he: 'he-IL', hi: 'hi-IN', hu: 'hu-HU', id: 'id-ID', it: 'it-IT', ja: 'ja-JP', ko: 'ko-KR', no: 'nb-NO', pl: 'pl-PL', pt: 'pt-PT', ro: 'ro-RO', ru: 'ru-RU', es: 'es-ES', sv: 'sv-SE', th: 'th-TH', tr: 'tr-TR', uk: 'uk-UA', vi: 'vi-VN' };
 const refreshers = [];
+
+const cookieAttributes = (maxAge = COOKIE_MAX_AGE) => {
+  const hostname = location.hostname.toLowerCase();
+  const isDuocardsDomain = hostname === 'duocards.xyz' || hostname.endsWith('.duocards.xyz');
+  return [
+    'Path=/',
+    `Max-Age=${maxAge}`,
+    'SameSite=Lax',
+    ...(isDuocardsDomain ? ['Domain=.duocards.xyz', 'Secure'] : []),
+  ].join('; ');
+};
+
+const readCookie = name => {
+  const rawValue = document.cookie
+    .split(';')
+    .map(row => row.trim())
+    .find(row => row.startsWith(`${name}=`))
+    ?.slice(name.length + 1);
+  if (!rawValue) return null;
+
+  try {
+    return decodeURIComponent(rawValue);
+  } catch {
+    return null;
+  }
+};
+
+const writeCookie = (name, value, maxAge = COOKIE_MAX_AGE) => {
+  document.cookie = `${name}=${encodeURIComponent(value)}; ${cookieAttributes(maxAge)}`;
+};
 
 const T = {
   en: {
@@ -262,7 +295,7 @@ Object.entries(window.DuoLandingLocales || {}).forEach(([code, pack]) => {
   };
 });
 
-let lang = localStorage.getItem(STORAGE_KEY);
+let lang = readCookie(SHARED_COOKIE_KEY) || localStorage.getItem(STORAGE_KEY);
 const urlLang = new URLSearchParams(location.search).get('lang');
 if (LOCALES.includes(urlLang)) lang = urlLang;
 else if (!LOCALES.includes(lang)) {
@@ -442,6 +475,8 @@ const applyLang = () => {
 const setLang = next => {
   lang = LOCALES.includes(next) ? next : 'en';
   localStorage.setItem(STORAGE_KEY, lang);
+  writeCookie(SHARED_COOKIE_KEY, lang);
+  writeCookie(PENDING_APP_COOKIE_KEY, lang);
   applyLang();
 };
 

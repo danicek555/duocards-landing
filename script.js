@@ -10,6 +10,41 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE = matchMedia('(pointer: fine)').matches;
 const APP_URL = 'https://app.duocards.xyz/';
+// TODO: Replace this placeholder as soon as the public App Store listing is available.
+const IOS_APP_URL = 'https://apps.apple.com/app/id0000000000';
+const MOBILE_VISITOR = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
+  || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  || matchMedia('(max-width: 820px)').matches;
+const PRIMARY_CTA_URL = MOBILE_VISITOR ? IOS_APP_URL : APP_URL;
+
+const IOS_CTA_LABELS = {
+  ar: 'تنزيل لـ iOS', ca: 'Baixa per a iOS', zh: '下载 iOS 版', cs: 'Stáhnout pro iOS',
+  da: 'Hent til iOS', nl: 'Download voor iOS', en: 'Download for iOS', fi: 'Lataa iOS:lle',
+  fr: 'Télécharger pour iOS', de: 'Für iOS laden', el: 'Λήψη για iOS', he: 'הורדה ל־iOS',
+  hi: 'iOS के लिए डाउनलोड करें', hu: 'Letöltés iOS-re', id: 'Unduh untuk iOS', it: 'Scarica per iOS',
+  ja: 'iOS版をダウンロード', ko: 'iOS용 다운로드', no: 'Last ned for iOS', pl: 'Pobierz na iOS',
+  pt: 'Transferir para iOS', ro: 'Descarcă pentru iOS', ru: 'Скачать для iOS', es: 'Descargar para iOS',
+  sv: 'Hämta för iOS', th: 'ดาวน์โหลดสำหรับ iOS', tr: 'iOS için indir', uk: 'Завантажити для iOS',
+  vi: 'Tải xuống cho iOS',
+};
+
+const iosCtaLabel = (arrow = false) => {
+  const lang = window.DuoI18n?.getLang?.() || 'en';
+  const label = IOS_CTA_LABELS[lang] || IOS_CTA_LABELS.en;
+  return arrow ? `${label} →` : label;
+};
+
+const syncMobileCtas = () => {
+  if (!MOBILE_VISITOR) return;
+  document.querySelectorAll('a.btn-nav, .hero-cta a.btn-primary, #finalCta, a.btn-dark, .colophon a').forEach(link => {
+    link.href = IOS_APP_URL;
+    if (link.matches('.btn-nav, .btn-primary')) link.textContent = iosCtaLabel();
+    else if (link.matches('.btn-final, .btn-dark, .colophon a')) link.textContent = iosCtaLabel(true);
+  });
+};
+
+document.addEventListener('DOMContentLoaded', syncMobileCtas);
+document.addEventListener('duocards:lang', syncMobileCtas);
 
 /* Scroll bez # v URL */
 (() => {
@@ -515,7 +550,7 @@ const playFeedbackSound = kind => {
       <div class="result-card cardlet">
         <p class="result-big">${L().demoResult(counts.done, TOTAL)}</p>
         <p class="result-note mono">${L().demoResultNote}</p>
-        <a class="btn btn-dark" href="${APP_URL}" rel="noopener">${L().demoResultCta}</a>
+        <a class="btn btn-dark" href="${PRIMARY_CTA_URL}" rel="noopener">${MOBILE_VISITOR ? iosCtaLabel(true) : L().demoResultCta}</a>
       </div>`;
     $('#deckActions').style.display = 'none';
     liveEl.textContent = L().demoDoneLive(counts.done, TOTAL);
@@ -679,7 +714,7 @@ const playFeedbackSound = kind => {
     e.preventDefault();
     const r = btn.getBoundingClientRect();
     burst(r.left + r.width / 2, r.top + r.height / 2, 40);
-    setTimeout(() => { location.href = APP_URL; }, 350);
+    setTimeout(() => { location.href = PRIMARY_CTA_URL; }, 350);
   });
 
   if (REDUCED) return;
