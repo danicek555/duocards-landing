@@ -16,6 +16,12 @@ const MOBILE_VISITOR = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAge
   || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
   || matchMedia('(max-width: 820px)').matches;
 const PRIMARY_CTA_URL = MOBILE_VISITOR ? IOS_APP_URL : APP_URL;
+const LANGUAGE_FLAGS = {
+  ar: '🇸🇦', ca: '🇪🇸', zh: '🇨🇳', cs: '🇨🇿', da: '🇩🇰', nl: '🇳🇱', en: '🇬🇧',
+  fi: '🇫🇮', fr: '🇫🇷', de: '🇩🇪', el: '🇬🇷', he: '🇮🇱', hi: '🇮🇳', hu: '🇭🇺',
+  id: '🇮🇩', it: '🇮🇹', ja: '🇯🇵', ko: '🇰🇷', no: '🇳🇴', pl: '🇵🇱', pt: '🇵🇹',
+  ro: '🇷🇴', ru: '🇷🇺', es: '🇪🇸', sv: '🇸🇪', th: '🇹🇭', tr: '🇹🇷', uk: '🇺🇦', vi: '🇻🇳',
+};
 
 const IOS_CTA_LABELS = {
   ar: 'تنزيل لـ iOS', ca: 'Baixa per a iOS', zh: '下载 iOS 版', cs: 'Stáhnout pro iOS',
@@ -43,8 +49,18 @@ const syncMobileCtas = () => {
   });
 };
 
+const syncLanguageFlag = () => {
+  const select = document.getElementById('langSelect');
+  const flag = document.getElementById('langFlag');
+  if (select && flag) flag.textContent = LANGUAGE_FLAGS[select.value] || '🌐';
+};
+
 document.addEventListener('DOMContentLoaded', syncMobileCtas);
-document.addEventListener('duocards:lang', syncMobileCtas);
+document.addEventListener('DOMContentLoaded', syncLanguageFlag);
+document.addEventListener('duocards:lang', () => {
+  syncMobileCtas();
+  syncLanguageFlag();
+});
 
 /* Scroll bez # v URL */
 (() => {

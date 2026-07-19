@@ -218,6 +218,8 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   align-items: center;
   gap: 10px;
 }
+.lang-picker { position: relative; flex: 0 0 auto; }
+.lang-flag { display: none; }
 .lang-select {
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -806,8 +808,9 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 
 /* ---------- 05 čísla ---------- */
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin: 40px 0 26px; }
+@media (min-width: 561px) { .stats-grid { margin-top: 80px; } }
 .stat { display: flex; flex-direction: column; gap: 6px; }
-.stat-decks { position: relative; }
+.stat-piles { position: relative; }
 .stat-num {
   font-size: clamp(2.6rem, 5.5vw, 4.2rem);
   font-weight: 700;
@@ -820,7 +823,7 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
 }
 .stat-val { font-variant-numeric: tabular-nums; }
 .stat-label { font-size: 12px; letter-spacing: .08em; color: var(--g400); }
-.streak-stage { position: absolute; top: -34px; right: 0; z-index: 2; }
+.streak-stage { position: absolute; top: -38px; left: 34px; z-index: 2; }
 .stamps { display: flex; flex-wrap: wrap; gap: 8px; max-width: 640px; }
 .stamp-btn {
   font-family: var(--mono);
@@ -1005,8 +1008,36 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   .hero { padding-top: 84px; }
   .hero-cta { gap: 16px; }
   .piles { gap: 6px; width: 100%; justify-content: center; }
-  .streak-stage { top: -28px; right: -2px; }
-  .streak { transform: rotate(12deg); }
+  .nav { padding: 10px 12px; gap: 8px; }
+  .brand-name { font-size: 11px; margin-bottom: 0; }
+  .nav-actions { min-width: 0; gap: 6px; }
+  .lang-picker { width: 44px; height: 40px; }
+  .lang-flag {
+    display: grid;
+    width: 44px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: var(--surface);
+    font-size: 19px;
+    line-height: 1;
+  }
+  .lang-select {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    opacity: 0;
+  }
+  .btn-nav { padding: 10px 12px; font-size: 11px; line-height: 1; white-space: nowrap; }
+  .streak-stage { top: -22px; left: -8px; }
+  .streak { padding: 6px 9px; gap: 6px; transform: rotate(8deg); }
+  .streak-copy { gap: 6px; }
+  .streak-copy > strong { font-size: 1.35rem; }
+  .streak .mono { font-size: 9px; }
+  .flame { width: 20px; height: 20px; }
   .pile { padding: 6px 10px; gap: 5px; }
   .pile-label { font-size: 10px; }
   .deck-actions { gap: 8px; }
