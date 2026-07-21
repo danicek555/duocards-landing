@@ -1008,19 +1008,19 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
   .hero { padding-top: 84px; }
   .hero-cta { gap: 16px; }
   .piles { gap: 6px; width: 100%; justify-content: center; }
-  .nav { padding: 10px 12px; gap: 8px; }
-  .brand-name { font-size: 11px; margin-bottom: 0; }
+  .nav { padding: 12px 14px; gap: 8px; }
+  .brand-name { font-size: 12px; margin-bottom: 0; }
   .nav-actions { min-width: 0; gap: 6px; }
-  .lang-picker { width: 44px; height: 40px; }
+  .lang-picker { width: 46px; height: 42px; }
   .lang-flag {
     display: grid;
-    width: 44px;
-    height: 40px;
+    width: 46px;
+    height: 42px;
     place-items: center;
     border: 1px solid var(--border);
     border-radius: 11px;
     background: var(--surface);
-    font-size: 19px;
+    font-size: 21px;
     line-height: 1;
   }
   .lang-select {
@@ -1031,7 +1031,7 @@ h1, h2 { color: var(--heading); letter-spacing: -0.025em; line-height: 1.08; fon
     max-width: none;
     opacity: 0;
   }
-  .btn-nav { padding: 10px 12px; font-size: 11px; line-height: 1; white-space: nowrap; }
+  .btn-nav { padding: 11px 14px; font-size: 12px; line-height: 1; white-space: nowrap; }
   .streak-stage { top: -22px; left: -8px; }
   .streak { padding: 6px 9px; gap: 6px; transform: rotate(8deg); }
   .streak-copy { gap: 6px; }
